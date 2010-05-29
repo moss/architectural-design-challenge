@@ -3,12 +3,11 @@ DONE
 
 IN PROGRESS
 -----------
-* Print out a file from a hardcoded location.
+* Print contents of a file specified on the command line, finding it in a configurable directory.
 
 BACKLOG
 -------
 * Translate the file into ROT-13 while printing.
-* Accept a command-line argument for the source file, making the source directory configurable.
 * Write output to a file, provided by a second command-line argument, in the configured directory.
 
 SOMEDAY/MAYBE

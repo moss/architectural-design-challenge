@@ -12,6 +12,6 @@ Some thoughts:
   Instead, I'm going to set up a fake I/O environment for them to run in, with contract tests to
   verify its functional equivalence to the real I/O environment.
 * It's probably worth noting that I probably haven't delivered any business value until all my first
-  four stories are done. The first four together add up to an MMF, as it were. It still seems worth
-  having them in there, to get started reviewing functionality and thinking about architecture as
-  early as possible.
+  three stories are done. The first three together add up to an MMF, as it were. It still seems
+  worth having them in there, to get started reviewing functionality and thinking about architecture
+  as early as possible.
