@@ -29,6 +29,4 @@ Design
 * I will never import a class or interface without using all of its public methods.
 * I will never put two classes in the same package unless one uses the other.
 * I will never put one package inside another unless the parent uses the child.
-* I will never import from a package (in my code) into another that is not its parent.
-  * I'm not at all confident of this rule or the last one--they're on trial.
 * I will never use the new keyword and do a method call in the same class.
