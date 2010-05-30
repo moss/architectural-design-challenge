@@ -5,12 +5,14 @@ import org.jbehave.scenario.parser.*;
 
 public class ReadAFileStory extends JUnitScenario {
     public ReadAFileStory() {
-        super(new MostUsefulConfiguration() {
-            @Override public ScenarioDefiner forDefiningScenarios() {
-                return new ClasspathScenarioDefiner(
-                        new UnderscoredCamelCaseResolver(".story").removeFromClassname("Story"),
-                        new PatternScenarioParser(keywords()));
-            }
-        });
+        super(new ArdechaConfiguration(), new ReadAFileSteps());
+    }
+
+    private static class ArdechaConfiguration extends MostUsefulConfiguration {
+        @Override public ScenarioDefiner forDefiningScenarios() {
+            return new ClasspathScenarioDefiner(
+                    new UnderscoredCamelCaseResolver(".story").removeFromClassname("Story"),
+                    new PatternScenarioParser(keywords()));
+        }
     }
 }
