@@ -19,6 +19,12 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jbehave</groupId>
+            <artifactId>jbehave-core</artifactId>
+            <version>2.5.8</version>
         </dependency>
     </dependencies>
     <build>
@@ -27,6 +33,10 @@
                 <groupId>org.jbehave</groupId>
                 <artifactId>jbehave-maven-plugin</artifactId>
                 <version>2.5.8</version>
+                <configuration>
+                    <classLoaderInjected>false</classLoaderInjected>
+                    <scope>test</scope>
+                </configuration>
                 <executions>
                     <execution>
                         <id>run-scenarios-found</id>
@@ -35,11 +45,9 @@
                             <scenarioIncludes>
                                 <scenarioInclude>**/acceptance/*Story.java</scenarioInclude>
                             </scenarioIncludes>
-                            <classLoaderInjected>false</classLoaderInjected>
                             <skip>false</skip>
-                            <ignoreFailure>false</ignoreFailure>
+                            <ignoreFailure>true</ignoreFailure>
                             <batch>false</batch>
-                            <scope>test</scope>
                         </configuration>
                         <goals>
                             <goal>run-scenarios</goal>
@@ -72,6 +80,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
