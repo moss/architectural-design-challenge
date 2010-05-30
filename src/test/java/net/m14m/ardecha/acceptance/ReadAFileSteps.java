@@ -1,6 +1,5 @@
 package net.m14m.ardecha.acceptance;
 
-import net.m14m.ardecha.application.Rot13Application;
 import org.jbehave.scenario.annotations.*;
 import org.jbehave.scenario.steps.Steps;
 
@@ -18,7 +17,7 @@ public class ReadAFileSteps extends Steps {
 
     @When("I execute \"rot13 $inputFile\"")
     public void runApplication(String inputFile) {
-        new Rot13Application(fakeIOEnvironment.getRepository(), fakeIOEnvironment.getOutput()).translate(inputFile);
+        fakeIOEnvironment.createApplicationInFakeEnvironment().translate(inputFile);
     }
 
     @Then("it should print \"$output\"")
