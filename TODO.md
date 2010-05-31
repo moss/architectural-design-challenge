@@ -1,4 +1,4 @@
-* Wire up acceptance test as early as possible
+* Make Input iterable
 * Read files
 * Print output
 * Fake output writer
@@ -9,6 +9,7 @@
 * Don't forget to close the filereader when you're done.
 * Any magic around flushing of output streams?
 * Do we need to trim whitespace when checking output in the acceptance test?
+* Missing files?
 
 A quick design sketch:
 ![The Application loads a file and an output source, and builds a Rot13Translator from them](http://www.diagrammr.com/png?key=dG6ESsAeogH)
