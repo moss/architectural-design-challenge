@@ -6,6 +6,8 @@
 * Also needs to be an application created in there
 * Configure what directory to read from
 * Do a test run of the application
+* Handle exceptions while reading files.
+* Don't forget to close the filereader when you're done.
 
 A quick design sketch:
 ![The Application loads a file and an output source, and builds a Rot13Translator from them](http://www.diagrammr.com/png?key=dG6ESsAeogH)

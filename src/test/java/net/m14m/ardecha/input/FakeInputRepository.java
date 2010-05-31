@@ -1,6 +1,6 @@
 package net.m14m.ardecha.input;
 
-public class FakeFileRepository implements FileRepository {
+public class FakeInputRepository implements InputRepository {
     public void createFile(String filename, String content) {
     }
 }
