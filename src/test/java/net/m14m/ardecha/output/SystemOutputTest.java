@@ -5,6 +5,7 @@ import org.junit.*;
 import java.io.*;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class SystemOutputTest extends OutputContract {
     private PrintStream realSystemOut;
@@ -12,7 +13,7 @@ public class SystemOutputTest extends OutputContract {
 
     @Before public void replaceSystemOut() throws Exception {
         realSystemOut = System.out;
-        fakeSystemOut = new ByteArrayOutputStream();
+        fakeSystemOut = spy(new ByteArrayOutputStream());
         System.setOut(new PrintStream(fakeSystemOut));
     }
 
@@ -22,6 +23,11 @@ public class SystemOutputTest extends OutputContract {
 
     @Override protected void shouldHavePrinted(String expectedOutput) throws UnsupportedEncodingException {
         assertEquals(expectedOutput, fakeSystemOut.toString("utf-8"));
+    }
+
+    @Test public void shouldFlushAfterEachCharacter_otherwiseFilesWithNoNewlineAtTheEndWillPrintWrong() throws IOException {
+        getOutput().writeChar('c');
+        verify(fakeSystemOut).flush();
     }
 
     @After public void restoreSystemOut() {

@@ -1,4 +1,3 @@
-* Any magic around flushing of output streams?
 * Missing files?
 * Should it be possible to use an Input more than once?
 * Consider the duplication between InputTest and InputRepositoryContract. Anything to be done?
