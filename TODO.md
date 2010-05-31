@@ -1,4 +1,3 @@
-* Should it be possible to use an Input more than once?
 * Consider the duplication between InputTest and InputRepositoryContract. Anything to be done?
 * Review rules--anything need refactoring?
 * Handle exceptions while reading files.
