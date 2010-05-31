@@ -1,6 +1,5 @@
 * Wire up acceptance test as early as possible
 * Read files
-* Fake file reader
 * Print output
 * Fake output writer
 * Also needs to be an application created in there
@@ -8,6 +7,8 @@
 * Do a test run of the application
 * Handle exceptions while reading files.
 * Don't forget to close the filereader when you're done.
+* Any magic around flushing of output streams?
+* Do we need to trim whitespace when checking output in the acceptance test?
 
 A quick design sketch:
 ![The Application loads a file and an output source, and builds a Rot13Translator from them](http://www.diagrammr.com/png?key=dG6ESsAeogH)

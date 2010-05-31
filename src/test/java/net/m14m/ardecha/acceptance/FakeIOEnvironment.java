@@ -2,7 +2,7 @@ package net.m14m.ardecha.acceptance;
 
 import net.m14m.ardecha.application.Rot13Application;
 import net.m14m.ardecha.input.FakeInputRepository;
-import net.m14m.ardecha.output.*;
+import net.m14m.ardecha.output.FakeOutput;
 
 public class FakeIOEnvironment {
     private final FakeInputRepository repository;
@@ -17,7 +17,7 @@ public class FakeIOEnvironment {
         return repository;
     }
 
-    public Output getOutput() {
+    public FakeOutput getOutput() {
         return output;
     }
 
