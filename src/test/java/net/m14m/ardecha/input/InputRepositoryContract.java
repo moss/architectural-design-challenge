@@ -3,6 +3,7 @@ package net.m14m.ardecha.input;
 import org.junit.*;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
@@ -17,11 +18,11 @@ public abstract class InputRepositoryContract {
 
     @Test public void shouldReadTheSpecifiedFileFromTheFilesystem() {
         InputRepository repository = getRepository();
-        Input input = repository.load(FILENAME);
-        assertEquals('t', input.readChar());
-        assertEquals('e', input.readChar());
-        assertEquals('s', input.readChar());
-        assertEquals('t', input.readChar());
+        Iterator<Integer> inputIterator = repository.load(FILENAME).iterator();
+        assertEquals(new Integer('t'), inputIterator.next());
+        assertEquals(new Integer('e'), inputIterator.next());
+        assertEquals(new Integer('s'), inputIterator.next());
+        assertEquals(new Integer('t'), inputIterator.next());
     }
 
     protected abstract InputRepository getRepository();
