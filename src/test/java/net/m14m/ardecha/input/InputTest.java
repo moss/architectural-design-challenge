@@ -10,9 +10,11 @@ import static org.junit.Assert.*;
 public class InputTest {
     private StringReader reader = new StringReader("foo");
     private Iterator<Integer> inputIterator;
+    private Input input;
 
     @Before public void setUp() throws Exception {
-        inputIterator = new Input(reader).iterator();
+        input = new Input(reader);
+        inputIterator = input.iterator();
     }
 
     @Test public void shouldIterateOverCharacters() {
@@ -29,5 +31,11 @@ public class InputTest {
         assertTrue("after second char", inputIterator.hasNext());
         inputIterator.next();
         assertFalse("after third char", inputIterator.hasNext());
+    }
+
+    @Test public void BEWARE_newIteratorsWillNotStartOverFromTheBeginning_maybeThisShouldBeFixed() {
+        assertEquals(new Integer('f'), inputIterator.next());
+        assertEquals("even a new iterator returns the next character",
+                new Integer('o'), input.iterator().next());
     }
 }
