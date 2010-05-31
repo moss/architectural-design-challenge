@@ -22,11 +22,3 @@ Some thoughts (adding as I go):
   things like file contents and command-line arguments make sense as primitives. But we'll see if I
   don't end up regretting that. The new and call rule seems worth refactoring to follow. And the
   subpackage rule is just impossible to follow while writing decent code--I'm dropping it.
-* I find I'm getting a little bit hung up on whether to do this top-down (or perhaps BDD-style
-  'outside-in'), which push toward a mock-heavy approach for obvious reasons, or bottom-up, which
-  would mean guessing at the most useful interface for, for example, the FileRepository, but would
-  also make it easy to get started building real things that I could see worked. In the end, I think
-  I've decided that neither of these is what I want. Instead, I'm going to implement the narrowest
-  possible slice of functionality, inline in my Application class, and then break it out into
-  pieces. This suggests that I should get rid of the FakeIOEnvironment stuff for the moment, and
-  evolve it as it becomes necessary. Which isn't surprising--it was pretty speculative before.
