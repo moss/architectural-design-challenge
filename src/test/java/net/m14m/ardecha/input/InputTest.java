@@ -3,20 +3,21 @@ package net.m14m.ardecha.input;
 import org.junit.*;
 
 import java.io.StringReader;
+import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
 public class InputTest {
     private StringReader reader = new StringReader("foo");
-    private Input input;
+    private Iterator<Integer> inputIterator;
 
     @Before public void setUp() throws Exception {
-        input = new Input(reader);
+        inputIterator = new Input(reader).iterator();
     }
 
     @Test public void shouldIterateOverCharacters() {
-        assertEquals('f', input.readChar());
-        assertEquals('o', input.readChar());
-        assertEquals('o', input.readChar());
+        assertEquals(new Integer('f'), inputIterator.next());
+        assertEquals(new Integer('o'), inputIterator.next());
+        assertEquals(new Integer('o'), inputIterator.next());
     }
 }
