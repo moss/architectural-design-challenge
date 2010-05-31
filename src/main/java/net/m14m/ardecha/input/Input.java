@@ -27,13 +27,14 @@ public class Input implements Iterable<Integer> {
 
         public Integer next() {
             int result = nextCharacter;
-            advance();
+            if (hasNext()) advance();
             return result;
         }
 
         private void advance() {
             try {
                 nextCharacter = reader.read();
+                if (!hasNext()) reader.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

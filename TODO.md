@@ -1,4 +1,3 @@
-* Don't forget to close the filereader when you're done.
 * Any magic around flushing of output streams?
 * Missing files?
 * Should it be possible to use an Input more than once?

@@ -6,13 +6,14 @@ import java.io.StringReader;
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class InputTest {
     private StringReader reader = new StringReader("foo");
     private Iterator<Integer> inputIterator;
     private Input input;
 
-    @Before public void setUp() throws Exception {
+    @Before public void createInputAndIterator() throws Exception {
         input = new Input(reader);
         inputIterator = input.iterator();
     }
@@ -38,5 +39,14 @@ public class InputTest {
         Iterator<Integer> aNewIterator = input.iterator();
         assertEquals("even a new iterator returns the next character",
                 new Integer('o'), aNewIterator.next());
+    }
+
+    @Test public void shouldCloseTheReaderWhenItIsDone() throws Exception {
+        reader = spy(reader);
+        createInputAndIterator();
+        inputIterator.next();
+        inputIterator.next();
+        inputIterator.next();
+        verify(reader).close();
     }
 }
