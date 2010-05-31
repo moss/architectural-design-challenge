@@ -2,6 +2,7 @@ An implementation of James Shore's
 [Architectural Design Challenge](http://jamesshore.com/Blog/Architectural-Design-Challenge.html).
 
 Some thoughts (adding as I go):
+
 * I'm treating this as a constrained exercise, by adding a bunch of rules that I'm going to follow
   while doing it. The hope is that this will help test some of my intuitions about what makes for
   good design.
