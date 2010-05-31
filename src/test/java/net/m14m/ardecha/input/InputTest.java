@@ -35,7 +35,8 @@ public class InputTest {
 
     @Test public void BEWARE_newIteratorsWillNotStartOverFromTheBeginning_maybeThisShouldBeFixed() {
         assertEquals(new Integer('f'), inputIterator.next());
+        Iterator<Integer> aNewIterator = input.iterator();
         assertEquals("even a new iterator returns the next character",
-                new Integer('o'), input.iterator().next());
+                new Integer('o'), aNewIterator.next());
     }
 }
