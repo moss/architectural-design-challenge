@@ -1,9 +1,9 @@
-* Missing files?
 * Should it be possible to use an Input more than once?
 * Consider the duplication between InputTest and InputRepositoryContract. Anything to be done?
 * Review rules--anything need refactoring?
 * Handle exceptions while reading files.
 * Configure what directory to read from
+* Missing files?
 * Give useful output when called with the wrong arguments?
 
 A quick design sketch:
