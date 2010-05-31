@@ -1,4 +1,3 @@
-* Consider the duplication between InputTest and InputRepositoryContract. Anything to be done?
 * Review rules--anything need refactoring?
 * Handle exceptions while reading files.
 * Configure what directory to read from

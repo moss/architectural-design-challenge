@@ -3,9 +3,8 @@ package net.m14m.ardecha.input;
 import org.junit.*;
 
 import java.io.IOException;
-import java.util.Iterator;
 
-import static org.junit.Assert.*;
+import static net.m14m.ardecha.input.InputAssertions.assertHasCharacters;
 
 public abstract class InputRepositoryContract {
     private static final String FILENAME = "some_file.txt";
@@ -18,11 +17,8 @@ public abstract class InputRepositoryContract {
 
     @Test public void shouldReadTheSpecifiedFileFromTheFilesystem() {
         InputRepository repository = getRepository();
-        Iterator<Integer> inputIterator = repository.load(FILENAME).iterator();
-        assertEquals(new Integer('t'), inputIterator.next());
-        assertEquals(new Integer('e'), inputIterator.next());
-        assertEquals(new Integer('s'), inputIterator.next());
-        assertEquals(new Integer('t'), inputIterator.next());
+        Input input = repository.load(FILENAME);
+        assertHasCharacters(input, 't', 'e', 's', 't');
     }
 
     protected abstract InputRepository getRepository();
