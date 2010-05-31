@@ -10,14 +10,6 @@ public class Input implements Iterable<Integer> {
         this.reader = reader;
     }
 
-    public int readChar() {
-        try {
-            return reader.read();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public Iterator<Integer> iterator() {
         return new ReaderIterator();
     }
@@ -40,7 +32,11 @@ public class Input implements Iterable<Integer> {
         }
 
         private void advance() {
-            nextCharacter = readChar();
+            try {
+                nextCharacter = reader.read();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         public void remove() {
