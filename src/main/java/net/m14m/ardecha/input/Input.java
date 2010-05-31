@@ -19,18 +19,32 @@ public class Input implements Iterable<Integer> {
     }
 
     public Iterator<Integer> iterator() {
-        return new Iterator<Integer>() {
-            public boolean hasNext() {
-                return false;
-            }
+        return new ReaderIterator();
+    }
 
-            public Integer next() {
-                return readChar();
-            }
+    private class ReaderIterator implements Iterator<Integer> {
+        private int nextCharacter;
 
-            public void remove() {
-                throw new UnsupportedOperationException("Can't modify input");
-            }
-        };
+        public ReaderIterator() {
+            advance();
+        }
+
+        public boolean hasNext() {
+            return nextCharacter != -1;
+        }
+
+        public Integer next() {
+            int result = nextCharacter;
+            advance();
+            return result;
+        }
+
+        private void advance() {
+            nextCharacter = readChar();
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException("Can't modify input");
+        }
     }
 }

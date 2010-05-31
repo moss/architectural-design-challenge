@@ -20,4 +20,14 @@ public class InputTest {
         assertEquals(new Integer('o'), inputIterator.next());
         assertEquals(new Integer('o'), inputIterator.next());
     }
+
+    @Test public void shouldIndicateWhetherMoreCharactersRemain() {
+        assertTrue("before first char", inputIterator.hasNext());
+        inputIterator.next();
+        assertTrue("after first char", inputIterator.hasNext());
+        inputIterator.next();
+        assertTrue("after second char", inputIterator.hasNext());
+        inputIterator.next();
+        assertFalse("after third char", inputIterator.hasNext());
+    }
 }
