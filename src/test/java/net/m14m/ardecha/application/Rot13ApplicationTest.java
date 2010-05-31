@@ -17,7 +17,6 @@ public class Rot13ApplicationTest {
     @Test public void shouldPrintInputToOutput() {
         repository.createFile(FILENAME, "some text");
         application.translate(FILENAME);
-        // TODO make it possible to see when you're out of input, then implement this
-//        output.shouldHavePrinted("some text");
+        output.shouldHavePrinted("some text");
     }
 }
