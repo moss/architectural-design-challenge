@@ -6,7 +6,7 @@ import java.io.*;
 
 import static org.junit.Assert.*;
 
-public class SystemOutputTest {
+public class SystemOutputTest extends OutputContract {
     private PrintStream realSystemOut;
     private ByteArrayOutputStream fakeSystemOut;
 
@@ -16,21 +16,12 @@ public class SystemOutputTest {
         System.setOut(new PrintStream(fakeSystemOut));
     }
 
-    @Test public void shouldPrintCharacters() throws UnsupportedEncodingException {
-        Output output = getOutput();
-        output.writeChar('t');
-        output.writeChar('e');
-        output.writeChar('s');
-        output.writeChar('t');
-        shouldHavePrinted("test");
-    }
-
-    private void shouldHavePrinted(String expectedOutput) throws UnsupportedEncodingException {
-        assertEquals(expectedOutput, fakeSystemOut.toString("utf-8"));
-    }
-
-    private Output getOutput() {
+    @Override protected Output getOutput() {
         return new SystemOutput();
+    }
+
+    @Override protected void shouldHavePrinted(String expectedOutput) throws UnsupportedEncodingException {
+        assertEquals(expectedOutput, fakeSystemOut.toString("utf-8"));
     }
 
     @After public void restoreSystemOut() {
