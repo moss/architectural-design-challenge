@@ -1,6 +1,6 @@
 package net.m14m.ardecha.acceptance;
 
-import net.m14m.ardecha.application.Rot13Application;
+import net.m14m.ardecha.application.*;
 import net.m14m.ardecha.input.FakeInputRepository;
 import net.m14m.ardecha.output.FakeOutput;
 
@@ -22,6 +22,6 @@ public class FakeIOEnvironment {
     }
 
     public Rot13Application createApplicationInFakeEnvironment() {
-        return new Rot13Application(repository, output);
+        return new Rot13Application(repository, output, new ErrorLogger());
     }
 }

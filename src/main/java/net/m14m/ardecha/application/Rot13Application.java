@@ -4,20 +4,20 @@ import net.m14m.ardecha.characters.TranslatableCharacter;
 import net.m14m.ardecha.input.*;
 import net.m14m.ardecha.output.*;
 
-import java.io.FileNotFoundException;
-
 public class Rot13Application {
     private final InputRepository repository;
     private final Output output;
+    private final ErrorLogger errorLogger;
 
     public static void main(String... args) {
-        new Rot13Application(new FilesystemBackedInputRepository(), new SystemOutput())
+        new Rot13Application(new FilesystemBackedInputRepository(), new SystemOutput(), new ErrorLogger())
                 .translate(args[0]);
     }
 
-    public Rot13Application(InputRepository repository, Output output) {
+    public Rot13Application(InputRepository repository, Output output, ErrorLogger errorLogger) {
         this.repository = repository;
         this.output = output;
+        this.errorLogger = errorLogger;
     }
 
     public void translate(String inputFilename) {
@@ -25,8 +25,8 @@ public class Rot13Application {
             for (TranslatableCharacter character : repository.load(inputFilename)) {
                 output.writeChar(character);
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            errorLogger.log(e);
         }
     }
 }
