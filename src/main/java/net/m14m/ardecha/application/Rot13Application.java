@@ -4,6 +4,8 @@ import net.m14m.ardecha.characters.TranslatableCharacter;
 import net.m14m.ardecha.input.*;
 import net.m14m.ardecha.output.*;
 
+import java.io.FileNotFoundException;
+
 public class Rot13Application {
     private final InputRepository repository;
     private final Output output;
@@ -19,8 +21,12 @@ public class Rot13Application {
     }
 
     public void translate(String inputFilename) {
-        for (TranslatableCharacter character : repository.load(inputFilename)) {
-            output.writeChar(character);
+        try {
+            for (TranslatableCharacter character : repository.load(inputFilename)) {
+                output.writeChar(character);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }

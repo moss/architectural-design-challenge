@@ -1,6 +1,6 @@
 package net.m14m.ardecha.input;
 
-import java.io.StringReader;
+import java.io.*;
 import java.util.*;
 
 public class FakeInputRepository implements InputRepository {
@@ -10,7 +10,8 @@ public class FakeInputRepository implements InputRepository {
         files.put(filename, new Input(new StringReader(content)));
     }
 
-    public Input load(String filename) {
+    public Input load(String filename) throws FileNotFoundException {
+        if (!files.containsKey(filename)) throw new FileNotFoundException(filename);
         return files.get(filename);
     }
 }
