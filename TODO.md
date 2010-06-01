@@ -1,8 +1,8 @@
-* Review rules--anything need refactoring?
 * Handle exceptions while reading files.
 * Configure what directory to read from
 * Missing files?
 * Give useful output when called with the wrong arguments?
+* Review package structure. Where do the Fake IO classes belong?
 
 A quick design sketch:
 ![The Application loads a file and an output source, and builds a Rot13Translator from them](http://www.diagrammr.com/png?key=dG6ESsAeogH)
