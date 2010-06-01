@@ -1,5 +1,6 @@
 package net.m14m.ardecha.input;
 
+import net.m14m.ardecha.characters.TranslatableCharacter;
 import org.junit.*;
 
 import java.io.StringReader;
@@ -22,7 +23,7 @@ public class InputTest {
     }
 
     @Test public void shouldIndicateWhetherMoreCharactersRemain() {
-        Iterator<Integer> inputIterator = input.iterator();
+        Iterator<?> inputIterator = input.iterator();
         assertTrue("before first char", inputIterator.hasNext());
         inputIterator.next();
         assertTrue("after first char", inputIterator.hasNext());
@@ -33,17 +34,17 @@ public class InputTest {
     }
 
     @Test public void BEWARE_allIteratorsShareTheSameReader_whichCausesUnexpectedBehavior_maybeThisShouldBeFixed() {
-        Iterator<Integer> oneIterator = input.iterator();
-        assertEquals(new Integer('f'), oneIterator.next());
-        Iterator<Integer> aNewIterator = input.iterator();
+        Iterator<TranslatableCharacter> oneIterator = input.iterator();
+        assertEquals(new TranslatableCharacter('f'), oneIterator.next());
+        Iterator<TranslatableCharacter> aNewIterator = input.iterator();
         assertEquals( "creating the new iterator advanced the underlying reader, and calling next advances it again",
-                new Integer('b'), aNewIterator.next());
+                new TranslatableCharacter('b'), aNewIterator.next());
     }
 
     @Test public void shouldCloseTheReaderWhenItIsDone() throws Exception {
         reader = spy(reader);
         createInput();
-        Iterator inputIterator = input.iterator();
+        Iterator<?> inputIterator = input.iterator();
         inputIterator.next();
         inputIterator.next();
         inputIterator.next();

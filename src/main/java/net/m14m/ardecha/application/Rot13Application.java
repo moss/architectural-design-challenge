@@ -19,8 +19,8 @@ public class Rot13Application {
     }
 
     public void translate(String inputFilename) {
-        for (Integer character : repository.load(inputFilename)) {
-            output.writeChar(new TranslatableCharacter(character));
+        for (TranslatableCharacter character : repository.load(inputFilename)) {
+            output.writeChar(character);
         }
     }
 }

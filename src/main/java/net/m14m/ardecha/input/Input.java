@@ -1,20 +1,22 @@
 package net.m14m.ardecha.input;
 
+import net.m14m.ardecha.characters.TranslatableCharacter;
+
 import java.io.*;
 import java.util.Iterator;
 
-public class Input implements Iterable<Integer> {
+public class Input implements Iterable<TranslatableCharacter> {
     private final Reader reader;
 
     public Input(Reader reader) {
         this.reader = reader;
     }
 
-    public Iterator<Integer> iterator() {
+    public Iterator<TranslatableCharacter> iterator() {
         return new ReaderIterator();
     }
 
-    private class ReaderIterator implements Iterator<Integer> {
+    private class ReaderIterator implements Iterator<TranslatableCharacter> {
         private int nextCharacter;
 
         public ReaderIterator() {
@@ -25,10 +27,10 @@ public class Input implements Iterable<Integer> {
             return nextCharacter != -1;
         }
 
-        public Integer next() {
+        public TranslatableCharacter next() {
             int result = nextCharacter;
             if (hasNext()) advance();
-            return result;
+            return new TranslatableCharacter(result);
         }
 
         private void advance() {
