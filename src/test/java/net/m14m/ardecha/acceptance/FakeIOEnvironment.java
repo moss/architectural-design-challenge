@@ -4,6 +4,8 @@ import net.m14m.ardecha.application.*;
 import net.m14m.ardecha.input.FakeInputRepository;
 import net.m14m.ardecha.output.FakeOutput;
 
+import java.io.*;
+
 public class FakeIOEnvironment {
     private final FakeInputRepository repository;
     private final FakeOutput output;
@@ -22,6 +24,7 @@ public class FakeIOEnvironment {
     }
 
     public Rot13Application createApplicationInFakeEnvironment() {
-        return new Rot13Application(repository, output, new ErrorLogger());
+        PrintWriter ouputWriter = new PrintWriter(new StringWriter());
+        return new Rot13Application(repository, output, new ErrorLogger(ouputWriter));
     }
 }

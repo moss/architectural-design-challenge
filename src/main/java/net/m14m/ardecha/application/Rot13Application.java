@@ -4,14 +4,18 @@ import net.m14m.ardecha.characters.TranslatableCharacter;
 import net.m14m.ardecha.input.*;
 import net.m14m.ardecha.output.*;
 
+import java.io.PrintWriter;
+
 public class Rot13Application {
     private final InputRepository repository;
     private final Output output;
     private final ErrorLogger errorLogger;
 
     public static void main(String... args) {
-        new Rot13Application(new FilesystemBackedInputRepository(), new SystemOutput(), new ErrorLogger())
-                .translate(args[0]);
+        FilesystemBackedInputRepository repository = new FilesystemBackedInputRepository();
+        SystemOutput output = new SystemOutput();
+        ErrorLogger errorLogger = new ErrorLogger(new PrintWriter(System.out));
+        new Rot13Application(repository, output, errorLogger).translate(args[0]);
     }
 
     public Rot13Application(InputRepository repository, Output output, ErrorLogger errorLogger) {
