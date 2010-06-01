@@ -1,5 +1,6 @@
 package net.m14m.ardecha.output;
 
+import net.m14m.ardecha.characters.TranslatableCharacter;
 import org.junit.*;
 
 import java.io.*;
@@ -26,7 +27,7 @@ public class SystemOutputTest extends OutputContract {
     }
 
     @Test public void shouldFlushAfterEachCharacter_otherwiseFilesWithNoNewlineAtTheEndWillPrintWrong() throws IOException {
-        getOutput().writeChar('c');
+        getOutput().writeChar(new TranslatableCharacter('c'));
         verify(fakeSystemOut).flush();
     }
 

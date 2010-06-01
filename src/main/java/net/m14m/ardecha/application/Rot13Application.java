@@ -1,5 +1,6 @@
 package net.m14m.ardecha.application;
 
+import net.m14m.ardecha.characters.TranslatableCharacter;
 import net.m14m.ardecha.input.*;
 import net.m14m.ardecha.output.*;
 
@@ -19,7 +20,7 @@ public class Rot13Application {
 
     public void translate(String inputFilename) {
         for (Integer character : repository.load(inputFilename)) {
-            output.writeChar(character);
+            output.writeChar(new TranslatableCharacter(character));
         }
     }
 }
