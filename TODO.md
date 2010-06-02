@@ -1,4 +1,3 @@
-* Handle exceptions while reading files.
 * Configure what directory to read from
 * Missing files?
 * Give useful output when called with the wrong arguments?
