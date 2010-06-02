@@ -1,3 +1,5 @@
+* Make the repository read the entire file into memory before returning it. You know--do what the
+  original challenge ACTUALLY SAID.
 * Configure what directory to read from
 * Missing files?
 * Give useful output when called with the wrong arguments?
