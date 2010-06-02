@@ -4,6 +4,6 @@ import java.io.*;
 
 public class FilesystemBackedInputRepository implements InputRepository {
     public Input load(String filename) throws FileNotFoundException {
-        return new Input(new FileReader(filename));
+        return Input.fromReader(new FileReader(filename));
     }
 }

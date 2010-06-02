@@ -1,6 +1,5 @@
 package net.m14m.ardecha.input;
 
-import net.m14m.ardecha.characters.TranslatableCharacter;
 import org.junit.*;
 
 import java.io.StringReader;
@@ -11,11 +10,10 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class InputTest {
-    private StringReader reader = new StringReader("fob");
     private Input input;
 
     @Before public void createInput() throws Exception {
-        input = new Input(reader);
+        input = new Input("fob");
     }
 
     @Test public void shouldIterateOverCharacters() {
@@ -33,17 +31,9 @@ public class InputTest {
         assertFalse("after third char", inputIterator.hasNext());
     }
 
-    @Test public void BEWARE_allIteratorsShareTheSameReader_whichCausesUnexpectedBehavior_maybeThisShouldBeFixed() {
-        Iterator<TranslatableCharacter> oneIterator = input.iterator();
-        assertEquals(new TranslatableCharacter('f'), oneIterator.next());
-        Iterator<TranslatableCharacter> aNewIterator = input.iterator();
-        assertEquals( "creating the new iterator advanced the underlying reader, and calling next advances it again",
-                new TranslatableCharacter('b'), aNewIterator.next());
-    }
-
     @Test public void shouldCloseTheReaderWhenItIsDone() throws Exception {
-        reader = spy(reader);
-        createInput();
+        StringReader reader = spy(new StringReader("foo"));
+        input = Input.fromReader(reader);
         Iterator<?> inputIterator = input.iterator();
         inputIterator.next();
         inputIterator.next();

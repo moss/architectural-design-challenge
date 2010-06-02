@@ -6,10 +6,25 @@ import java.io.*;
 import java.util.Iterator;
 
 public class Input implements Iterable<TranslatableCharacter> {
-    private final Reader reader;
+    private final String contents;
 
-    public Input(Reader reader) {
-        this.reader = reader;
+    public static Input fromReader(Reader reader) {
+        try {
+            StringBuilder sb = new StringBuilder();
+            while (true) {
+                int nextChar = reader.read();
+                if (nextChar == -1) break;
+                sb.appendCodePoint(nextChar);
+            }
+            reader.close();
+            return new Input(sb.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Input(String contents) {
+        this.contents = contents;
     }
 
     public Iterator<TranslatableCharacter> iterator() {
@@ -17,29 +32,16 @@ public class Input implements Iterable<TranslatableCharacter> {
     }
 
     private class ReaderIterator implements Iterator<TranslatableCharacter> {
-        private int nextCharacter;
-
-        public ReaderIterator() {
-            advance();
-        }
+        private int position = 0;
 
         public boolean hasNext() {
-            return nextCharacter != -1;
+            return position < contents.length();
         }
 
         public TranslatableCharacter next() {
-            int result = nextCharacter;
-            if (hasNext()) advance();
-            return new TranslatableCharacter(result);
-        }
-
-        private void advance() {
-            try {
-                nextCharacter = reader.read();
-                if (!hasNext()) reader.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            int nextChar = contents.codePointAt(position);
+            position++;
+            return new TranslatableCharacter(nextChar);
         }
 
         public void remove() {

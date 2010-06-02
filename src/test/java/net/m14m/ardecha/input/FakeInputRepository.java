@@ -7,7 +7,7 @@ public class FakeInputRepository implements InputRepository {
     private Map<String,Input> files = new HashMap<String, Input>();
 
     public void createFile(String filename, String content) {
-        files.put(filename, new Input(new StringReader(content)));
+        files.put(filename, Input.fromReader(new StringReader(content)));
     }
 
     public Input load(String filename) throws FileNotFoundException {
