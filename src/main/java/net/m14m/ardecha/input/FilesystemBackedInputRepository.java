@@ -5,6 +5,10 @@ import java.io.*;
 public class FilesystemBackedInputRepository implements InputRepository {
     private final String repositoryPath;
 
+    public static InputRepository create() {
+        return new FilesystemBackedInputRepository(System.getProperty("repositoryPath"));
+    }
+
     public FilesystemBackedInputRepository(String repositoryPath) {
         this.repositoryPath = repositoryPath;
     }

@@ -7,7 +7,7 @@ import java.io.*;
 import static net.m14m.ardecha.input.InputAssertions.assertHasCharacters;
 
 public abstract class InputRepositoryContract {
-    private static final String FILENAME = "some_file.txt";
+    protected static final String FILENAME = "some_file.txt";
 
     @Before public void writeContentsOfFile() throws IOException {
         writeFile(FILENAME, "test");
