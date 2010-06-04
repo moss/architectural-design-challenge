@@ -3,8 +3,14 @@ package net.m14m.ardecha.input;
 import java.io.*;
 
 public class FilesystemBackedInputRepository implements InputRepository {
+    private final String repositoryPath;
+
+    public FilesystemBackedInputRepository(String repositoryPath) {
+        this.repositoryPath = repositoryPath;
+    }
+
     public Input load(String filename) throws FileNotFoundException {
-        return readInputFile(new FileReader(filename));
+        return readInputFile(new FileReader(new File(repositoryPath, filename)));
     }
 
     private Input readInputFile(Reader reader) {
