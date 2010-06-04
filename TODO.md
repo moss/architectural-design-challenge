@@ -1,5 +1,5 @@
-* Configure what directory to read from
-* Missing files?
+* Bugfix from review: missing files are silently ignored.
+* Better output for missing files?
 * Give useful output when called with the wrong arguments?
 * Review package structure. Where do the Fake IO classes belong?
 

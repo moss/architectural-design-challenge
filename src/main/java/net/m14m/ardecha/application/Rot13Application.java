@@ -12,7 +12,7 @@ public class Rot13Application {
     private final ErrorLogger errorLogger;
 
     public static void main(String... args) {
-        FilesystemBackedInputRepository repository = new FilesystemBackedInputRepository("staging-input");
+        InputRepository repository = FilesystemBackedInputRepository.create();
         SystemOutput output = new SystemOutput();
         ErrorLogger errorLogger = new ErrorLogger(new PrintWriter(System.out));
         new Rot13Application(repository, output, errorLogger).translate(args[0]);

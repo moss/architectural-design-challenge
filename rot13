@@ -1,2 +1,0 @@
-#!/bin/bash
-java -jar target/architectural-design-challenge-1.0.jar $1 $2
