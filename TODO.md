@@ -1,4 +1,4 @@
-* Acceptance test
-* Support rot13 in TranslatableCharacter
-* Use it from Rot13Translator
+* Don't affect punctuation
+* Handle uppercase letters
+* Does Java has a translate method, or maybe something regex-y, that could make the code cleaner?
 * Review design
