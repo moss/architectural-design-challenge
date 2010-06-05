@@ -4,10 +4,10 @@ DONE
 
 IN PROGRESS
 -----------
+* Translate the file into ROT-13 while printing.
 
 BACKLOG
 -------
-* Translate the file into ROT-13 while printing.
 * Write output to a file, provided by a second command-line argument, in the configured directory.
 
 SOMEDAY/MAYBE
