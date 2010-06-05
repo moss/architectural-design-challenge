@@ -1,7 +1,5 @@
 package net.m14m.ardecha.application;
 
-import net.m14m.ardecha.input.FakeInputRepository;
-import net.m14m.ardecha.output.FakeOutput;
 import org.junit.*;
 import org.mockito.*;
 
@@ -10,39 +8,41 @@ import java.io.*;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.*;
 
+@SuppressWarnings({"ThrowableInstanceNeverThrown", "ThrowableResultOfMethodCallIgnored"})
 public class Rot13ApplicationTest {
-    private static final String FILENAME = "sample.txt";
-    private FakeInputRepository repository = new FakeInputRepository();
-    private FakeOutput output = new FakeOutput();
     @Mock private ErrorLogger errorLogger;
     @Mock private Flushable systemOutput;
+    @Mock private Rot13Translator translator;
     private Rot13Application application;
 
     @Before public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        application = new Rot13Application(repository, output, errorLogger, systemOutput);
+        application = new Rot13Application(translator, errorLogger, systemOutput);
     }
 
-    @Test public void shouldPrintInputToOutput() throws IOException {
-        repository.createFile(FILENAME, "some text");
-        application.run(FILENAME);
-        output.shouldHavePrinted("some text");
+    @Test public void shouldTranslateTheSpecifiedFile() throws IOException {
+        application.run("filename");
+        verify(translator).translate("filename");
     }
 
-    @Test @SuppressWarnings({"ThrowableResultOfMethodCallIgnored"}) public void
-    shouldCatchAndLogExceptions() throws IOException {
-        application.run("nonexistent-file.txt");
+    @Test public void shouldCatchAndLogExceptions() throws IOException {
+        givenAnErrorInTheApplication(new FileNotFoundException());
+        application.run("");
         verify(errorLogger).log(isA(FileNotFoundException.class));
     }
 
     @Test public void shouldFlushSystemOutputWhenItFinishesRunning() throws IOException {
-        repository.createFile(FILENAME, "");
-        application.run(FILENAME);
+        application.run("");
         verify(systemOutput).flush();
     }
 
     @Test public void shouldFlushOutputEvenIfThereIsAnError() throws IOException {
-        application.run("nonexistent-file.txt");
+        givenAnErrorInTheApplication(new RuntimeException());
+        application.run("");
         verify(systemOutput).flush();
+    }
+
+    private void givenAnErrorInTheApplication(Exception error) throws FileNotFoundException {
+        doThrow(error).when(translator).translate(anyString());
     }
 }

@@ -1,4 +1,3 @@
-* Test Rot13Application more directly.
 * The creation logic in Rot13Application.main is really complex. Factory?
 
 A quick design sketch:

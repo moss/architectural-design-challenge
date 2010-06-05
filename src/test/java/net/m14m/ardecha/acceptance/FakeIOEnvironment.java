@@ -29,6 +29,7 @@ public class FakeIOEnvironment {
         PrintWriter ouputWriter = new PrintWriter(new StringWriter());
         ErrorLogger logger = new ErrorLogger(ouputWriter);
         Flushable dummyFlushable = mock(Flushable.class);
-        return new Rot13Application(repository, output, logger, dummyFlushable);
+        Rot13Translator translator = new Rot13Translator(repository, output);
+        return new Rot13Application(translator, logger, dummyFlushable);
     }
 }

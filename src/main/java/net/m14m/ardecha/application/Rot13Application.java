@@ -1,7 +1,7 @@
 package net.m14m.ardecha.application;
 
 import net.m14m.ardecha.input.*;
-import net.m14m.ardecha.output.*;
+import net.m14m.ardecha.output.PrintStreamOutput;
 
 import java.io.*;
 
@@ -16,13 +16,13 @@ public class Rot13Application {
         PrintWriter writerWrappingSystemOut = new PrintWriter(systemOut);
         PrintStreamOutput output = new PrintStreamOutput(systemOut);
         ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
-        new Rot13Application(repository, output, errorLogger, writerWrappingSystemOut)
-                .run(args[0]);
+        Rot13Translator translator = new Rot13Translator(repository, output);
+        new Rot13Application(translator, errorLogger, writerWrappingSystemOut).run(args[0]);
     }
 
-    public Rot13Application(InputRepository repository, Output output, ErrorLogger errorLogger,
+    public Rot13Application(Rot13Translator translator, ErrorLogger errorLogger,
                             Flushable streamToFlushWhenAppFinishes) {
-        rot13Translator = new Rot13Translator(repository, output);
+        this.rot13Translator = translator;
         this.errorLogger = errorLogger;
         this.streamToFlushWhenAppFinishes = streamToFlushWhenAppFinishes;
     }
