@@ -3,6 +3,7 @@
     Since I already solved this problem earlier, this suggests that there's some unfortunate
     duplication at work. Perhaps the logger should be using the same output object as the rest of
     the application?
+  - Except there's not really a meaningful way to share the code that flushes after output. Boo.
 * Better output for missing files?
 * Give useful output when called with the wrong arguments?
 * Review package structure. Where do the Fake IO classes belong?
