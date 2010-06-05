@@ -14,9 +14,12 @@ public class Rot13Application {
 
     public static void main(String... args) throws IOException {
         InputRepository repository = FilesystemBackedInputRepository.create();
-        PrintStreamOutput output = new PrintStreamOutput(System.out);
-        ErrorLogger errorLogger = new ErrorLogger(new PrintWriter(System.out));
-        new Rot13Application(repository, output, errorLogger, System.out).translate(args[0]);
+        PrintStream systemOut = System.out;
+        PrintWriter writerWrappingSystemOut = new PrintWriter(systemOut);
+        PrintStreamOutput output = new PrintStreamOutput(systemOut);
+        ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
+        new Rot13Application(repository, output, errorLogger, writerWrappingSystemOut)
+                .translate(args[0]);
     }
 
     public Rot13Application(InputRepository repository, Output output, ErrorLogger errorLogger,

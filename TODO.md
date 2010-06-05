@@ -1,4 +1,3 @@
-* Review manually to confirm that it works okay.
 * Is Rot13Application a little big now?
 
 A quick design sketch:
