@@ -17,7 +17,7 @@ public class Rot13Translator {
 
     public void translate(String inputFilename) throws FileNotFoundException {
         for (TranslatableCharacter character : repository.load(inputFilename)) {
-            output.writeChar(character);
+            output.writeChar(character.translate());
         }
     }
 }

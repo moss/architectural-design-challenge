@@ -12,9 +12,9 @@ public class Rot13TranslatorTest {
     private FakeOutput output = new FakeOutput();
     private Rot13Translator translator = new Rot13Translator(repository, output);
 
-    @Test public void shouldPrintInputToOutput() throws IOException {
-        repository.createFile(FILENAME, "some text");
+    @Test public void shouldPrintRot13edInputToOutput() throws IOException {
+        repository.createFile(FILENAME, "abc");
         translator.translate(FILENAME);
-        output.shouldHavePrinted("some text");
+        output.shouldHavePrinted("nop");
     }
 }
