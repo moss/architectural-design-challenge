@@ -15,6 +15,11 @@ public class TranslatableCharacterTest {
         assertTranslation('z', 'm');
     }
 
+    @Test public void shouldHandleUppercaseLetters() {
+        assertTranslation('A', 'N');
+        assertTranslation('N', 'A');
+    }
+
     @Test public void shouldLeavePunctuationUnchanged() {
         assertTranslation('.', '.');
         assertTranslation('z' + 1, 'z' + 1);

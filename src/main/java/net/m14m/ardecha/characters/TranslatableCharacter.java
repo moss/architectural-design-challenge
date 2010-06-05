@@ -10,7 +10,7 @@ public class TranslatableCharacter {
     public TranslatableCharacter translate() {
         if (isPunctuation()) return this;
         int translated = character + 13;
-        if (translated > 'z') translated -= 26;
+        if (inSecondHalfOfAlphabet()) translated -= 26;
         return new TranslatableCharacter(translated);
     }
 
@@ -19,7 +19,19 @@ public class TranslatableCharacter {
     }
 
     private boolean isPunctuation() {
-        return character < 'a' || character > 'z';
+        return !isLetter();
+    }
+
+    private boolean isLetter() {
+        return inRange('a', 'z') || inRange('A', 'Z');
+    }
+
+    private boolean inSecondHalfOfAlphabet() {
+        return inRange('n', 'z') || inRange('N', 'Z');
+    }
+
+    private boolean inRange(char from, char to) {
+        return (character >= from && character <= to);
     }
 
     @Override public String toString() {
