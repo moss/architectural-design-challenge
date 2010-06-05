@@ -3,6 +3,8 @@ package net.m14m.ardecha.acceptance;
 import org.jbehave.scenario.annotations.*;
 import org.jbehave.scenario.steps.Steps;
 
+import java.io.IOException;
+
 public class ReadAFileSteps extends Steps {
     private FakeIOEnvironment fakeIOEnvironment;
 
@@ -16,7 +18,7 @@ public class ReadAFileSteps extends Steps {
     }
 
     @When("I execute \"rot13 $inputFile\"")
-    public void runApplication(String inputFile) {
+    public void runApplication(String inputFile) throws IOException {
         fakeIOEnvironment.createApplicationInFakeEnvironment().translate(inputFile);
     }
 
