@@ -7,6 +7,7 @@
 * Better output for missing files?
 * Give useful output when called with the wrong arguments?
 * Review package structure. Where do the Fake IO classes belong?
+* SystemOutput and ErrorLogger: feels like there's some redundancy and inconsistency there.
 
 A quick design sketch:
 ![The Application loads a file and an output source, and builds a Rot13Translator from them](http://www.diagrammr.com/png?key=dG6ESsAeogH)
