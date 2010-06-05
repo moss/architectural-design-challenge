@@ -10,6 +10,11 @@ public class TranslatableCharacterTest {
         assertTranslation('m', 'z');
     }
 
+    @Test public void shouldWrapAroundWhenItGetsToTheEndOfTheAlphabet() {
+        assertTranslation('n', 'a');
+        assertTranslation('z', 'm');
+    }
+
     private void assertTranslation(char fromCharacter, char expectedResult) {
         assertEquals(new TranslatableCharacter(expectedResult),
                 new TranslatableCharacter(fromCharacter).translate());

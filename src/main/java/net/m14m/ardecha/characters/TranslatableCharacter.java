@@ -8,7 +8,9 @@ public class TranslatableCharacter {
     }
 
     public TranslatableCharacter translate() {
-        return new TranslatableCharacter(character + 13);
+        int translated = character + 13;
+        if (translated > 'z') translated -= 26;
+        return new TranslatableCharacter(translated);
     }
 
     public int toInteger() {
