@@ -19,7 +19,7 @@ public class SystemOutputTest extends OutputContract {
     }
 
     @Override protected Output getOutput() {
-        return new SystemOutput();
+        return new SystemOutput(System.out);
     }
 
     @Override protected void shouldHavePrinted(String expectedOutput) throws UnsupportedEncodingException {

@@ -13,7 +13,7 @@ public class Rot13Application {
 
     public static void main(String... args) {
         InputRepository repository = FilesystemBackedInputRepository.create();
-        SystemOutput output = new SystemOutput();
+        SystemOutput output = new SystemOutput(System.out);
         ErrorLogger errorLogger = new ErrorLogger(new PrintWriter(System.out));
         new Rot13Application(repository, output, errorLogger).translate(args[0]);
     }
