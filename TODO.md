@@ -1,4 +1,3 @@
-* SystemOutput should take a PrintStream in its constructor, kind of like ErrorLogger.
 * The Application should flush System.out when it finishes.
 * Then there's no need for the other things to flush at all.
 * Possibly the FakeOutput can be simplified some after this.

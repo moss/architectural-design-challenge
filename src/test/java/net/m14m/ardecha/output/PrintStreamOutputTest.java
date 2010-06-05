@@ -9,29 +9,18 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class PrintStreamOutputTest extends OutputContract {
-    private PrintStream realSystemOut;
-    private ByteArrayOutputStream fakeSystemOut;
-
-    @Before public void replaceSystemOut() throws Exception {
-        realSystemOut = System.out;
-        fakeSystemOut = spy(new ByteArrayOutputStream());
-        System.setOut(new PrintStream(fakeSystemOut));
-    }
+    private ByteArrayOutputStream outputStream = spy(new ByteArrayOutputStream());
 
     @Override protected Output getOutput() {
-        return new PrintStreamOutput(System.out);
+        return new PrintStreamOutput(new PrintStream(outputStream));
     }
 
     @Override protected void shouldHavePrinted(String expectedOutput) throws UnsupportedEncodingException {
-        assertEquals(expectedOutput, fakeSystemOut.toString("utf-8"));
+        assertEquals(expectedOutput, outputStream.toString("utf-8"));
     }
 
     @Test public void shouldFlushAfterEachCharacter_otherwiseFilesWithNoNewlineAtTheEndWillPrintWrong() throws IOException {
         getOutput().writeChar(new TranslatableCharacter('c'));
-        verify(fakeSystemOut).flush();
-    }
-
-    @After public void restoreSystemOut() {
-        System.setOut(realSystemOut);
+        verify(outputStream).flush();
     }
 }
