@@ -1,4 +1,3 @@
-* Possibly the FakeOutput can be simplified some after this.
 * Review manually to confirm that it works okay.
 * Is Rot13Application a little big now?
 
