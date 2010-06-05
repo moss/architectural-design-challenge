@@ -13,6 +13,5 @@ public class PrintStreamOutput implements Output {
 
     public void writeChar(TranslatableCharacter translatableCharacter) {
         printStream.write(translatableCharacter.toInteger());
-        printStream.flush();
     }
 }
