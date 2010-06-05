@@ -13,3 +13,4 @@ BACKLOG
 SOMEDAY/MAYBE
 -------------
 * Allow input of arbitrarily large files.
+* Show a usage message when called with the wrong arguments. 

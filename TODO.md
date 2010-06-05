@@ -1,4 +1,3 @@
-* Give useful output when called with the wrong arguments?
 * Review package structure. Where do the Fake IO classes belong?
 * SystemOutput and ErrorLogger: feels like there's some redundancy and inconsistency there.
 
