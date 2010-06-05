@@ -1,4 +1,5 @@
-* Is Rot13Application a little big now?
+* Test Rot13Application more directly.
+* The creation logic in Rot13Application.main is really complex. Factory?
 
 A quick design sketch:
 ![The Application loads a file and an output source, and builds a Rot13Translator from them](http://www.diagrammr.com/png?key=dG6ESsAeogH)

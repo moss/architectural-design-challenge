@@ -1,14 +1,12 @@
 package net.m14m.ardecha.application;
 
-import net.m14m.ardecha.characters.TranslatableCharacter;
 import net.m14m.ardecha.input.*;
 import net.m14m.ardecha.output.*;
 
 import java.io.*;
 
 public class Rot13Application {
-    private final InputRepository repository;
-    private final Output output;
+    private final Rot13Translator rot13Translator;
     private final ErrorLogger errorLogger;
     private final Flushable streamToFlushWhenAppFinishes;
 
@@ -19,22 +17,19 @@ public class Rot13Application {
         PrintStreamOutput output = new PrintStreamOutput(systemOut);
         ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
         new Rot13Application(repository, output, errorLogger, writerWrappingSystemOut)
-                .translate(args[0]);
+                .run(args[0]);
     }
 
     public Rot13Application(InputRepository repository, Output output, ErrorLogger errorLogger,
                             Flushable streamToFlushWhenAppFinishes) {
-        this.repository = repository;
-        this.output = output;
+        rot13Translator = new Rot13Translator(repository, output);
         this.errorLogger = errorLogger;
         this.streamToFlushWhenAppFinishes = streamToFlushWhenAppFinishes;
     }
 
-    public void translate(String inputFilename) throws IOException {
+    public void run(String inputFilename) throws IOException {
         try {
-            for (TranslatableCharacter character : repository.load(inputFilename)) {
-                output.writeChar(character);
-            }
+            rot13Translator.translate(inputFilename);
         } catch (Exception e) {
             errorLogger.log(e);
         }

@@ -25,24 +25,24 @@ public class Rot13ApplicationTest {
 
     @Test public void shouldPrintInputToOutput() throws IOException {
         repository.createFile(FILENAME, "some text");
-        application.translate(FILENAME);
+        application.run(FILENAME);
         output.shouldHavePrinted("some text");
     }
 
     @Test @SuppressWarnings({"ThrowableResultOfMethodCallIgnored"}) public void
     shouldCatchAndLogExceptions() throws IOException {
-        application.translate("nonexistent-file.txt");
+        application.run("nonexistent-file.txt");
         verify(errorLogger).log(isA(FileNotFoundException.class));
     }
 
     @Test public void shouldFlushSystemOutputWhenItFinishesRunning() throws IOException {
         repository.createFile(FILENAME, "");
-        application.translate(FILENAME);
+        application.run(FILENAME);
         verify(systemOutput).flush();
     }
 
     @Test public void shouldFlushOutputEvenIfThereIsAnError() throws IOException {
-        application.translate("nonexistent-file.txt");
+        application.run("nonexistent-file.txt");
         verify(systemOutput).flush();
     }
 }

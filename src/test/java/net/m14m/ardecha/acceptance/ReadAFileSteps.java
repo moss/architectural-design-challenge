@@ -19,7 +19,7 @@ public class ReadAFileSteps extends Steps {
 
     @When("I execute \"rot13 $inputFile\"")
     public void runApplication(String inputFile) throws IOException {
-        fakeIOEnvironment.createApplicationInFakeEnvironment().translate(inputFile);
+        fakeIOEnvironment.createApplicationInFakeEnvironment().run(inputFile);
     }
 
     @Then("it should print \"$output\"")
