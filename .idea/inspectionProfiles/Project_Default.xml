@@ -36,12 +36,13 @@
       <option name="REPORT_PARAMETER_FOR_PUBLIC_METHODS" value="true" />
       <option name="INJECTION_ANNOS">
         <value>
-          <list size="5">
+          <list size="6">
             <item index="0" class="java.lang.String" itemvalue="org.jbehave.scenario.annotations.BeforeScenario" />
             <item index="1" class="java.lang.String" itemvalue="org.jbehave.scenario.annotations.Given" />
             <item index="2" class="java.lang.String" itemvalue="org.jbehave.scenario.annotations.Then" />
             <item index="3" class="java.lang.String" itemvalue="org.jbehave.scenario.annotations.When" />
             <item index="4" class="java.lang.String" itemvalue="org.junit.Test" />
+            <item index="5" class="java.lang.String" itemvalue="org.mockito.Mock" />
           </list>
         </value>
       </option>
