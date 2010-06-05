@@ -27,11 +27,6 @@ public class ErrorLoggerTest {
         outputShouldContain("the exception message", "I haz a ouch");
     }
 
-    @Test public void shouldFlushAfterOutput() {
-        errorLogger.log(new RuntimeException());
-        verify(outputWriter).flush();
-    }
-
     @Test public void shouldFormatFileNotFoundExceptionsWithAFriendlyErrorMessage() {
         errorLogger.log(new FileNotFoundException("dir/badfile (No such file or directory)"));
         outputShouldNotContain("the generic message", GENERIC_ERROR_MESSAGE);

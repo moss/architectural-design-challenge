@@ -16,7 +16,6 @@ public class ErrorLogger {
         } else {
             printGenericMessage(e);
         }
-        ouputWriter.flush();
     }
 
     private void printGenericMessage(Exception e) {
