@@ -8,7 +8,7 @@ import java.io.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class SystemOutputTest extends OutputContract {
+public class PrintStreamOutputTest extends OutputContract {
     private PrintStream realSystemOut;
     private ByteArrayOutputStream fakeSystemOut;
 
@@ -19,7 +19,7 @@ public class SystemOutputTest extends OutputContract {
     }
 
     @Override protected Output getOutput() {
-        return new SystemOutput(System.out);
+        return new PrintStreamOutput(System.out);
     }
 
     @Override protected void shouldHavePrinted(String expectedOutput) throws UnsupportedEncodingException {
