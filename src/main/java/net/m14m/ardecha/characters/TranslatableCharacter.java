@@ -8,6 +8,7 @@ public class TranslatableCharacter {
     }
 
     public TranslatableCharacter translate() {
+        if (isPunctuation()) return this;
         int translated = character + 13;
         if (translated > 'z') translated -= 26;
         return new TranslatableCharacter(translated);
@@ -15,6 +16,10 @@ public class TranslatableCharacter {
 
     public int toInteger() {
         return character;
+    }
+
+    private boolean isPunctuation() {
+        return character < 'a' || character > 'z';
     }
 
     @Override public String toString() {

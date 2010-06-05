@@ -15,7 +15,15 @@ public class TranslatableCharacterTest {
         assertTranslation('z', 'm');
     }
 
-    private void assertTranslation(char fromCharacter, char expectedResult) {
+    @Test public void shouldLeavePunctuationUnchanged() {
+        assertTranslation('.', '.');
+        assertTranslation('z' + 1, 'z' + 1);
+        assertTranslation('a' - 1, 'a' - 1);
+        assertTranslation('Z' + 1, 'Z' + 1);
+        assertTranslation('A' - 1, 'A' - 1);
+    }
+
+    private void assertTranslation(int fromCharacter, int expectedResult) {
         assertEquals(new TranslatableCharacter(expectedResult),
                 new TranslatableCharacter(fromCharacter).translate());
     }
