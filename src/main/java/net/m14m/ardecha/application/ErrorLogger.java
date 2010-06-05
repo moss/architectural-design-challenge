@@ -12,5 +12,6 @@ public class ErrorLogger {
     public void log(Exception e) {
         ouputWriter.println("An error occurred.");
         e.printStackTrace(ouputWriter);
+        ouputWriter.flush();
     }
 }
