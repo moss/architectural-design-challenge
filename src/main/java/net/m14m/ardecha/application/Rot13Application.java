@@ -1,5 +1,7 @@
 package net.m14m.ardecha.application;
 
+import net.m14m.ardecha.input.FilesystemBackedInputRepository;
+
 import java.io.*;
 
 public class Rot13Application {
@@ -8,7 +10,10 @@ public class Rot13Application {
     private final Flushable streamToFlushWhenAppFinishes;
 
     public static void main(String... args) throws IOException {
-        Rot13Application applicaton = new Rot13ApplicationFactory().create();
+        Rot13Application applicaton = new Rot13ApplicationFactory()
+                .withRepository(FilesystemBackedInputRepository.create())
+                .withOutputStream(System.out)
+                .create();
         applicaton.run(args[0]);
     }
 

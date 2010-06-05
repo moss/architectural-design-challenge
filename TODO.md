@@ -1,5 +1,3 @@
-* Now that a Rot13ApplicationFactory exists, use it to create the application for tests, too.
-* Using the Rot13ApplicationFactory in tests probably means that we can do FakeOutput differently.
 * Now reintroduce that old flush bug...
 * ...and see if we can't catch it using acceptance tests.
 
