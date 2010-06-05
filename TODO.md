@@ -1,4 +1,3 @@
-* Review package structure. Where do the Fake IO classes belong?
 * SystemOutput and ErrorLogger: feels like there's some redundancy and inconsistency there.
 
 A quick design sketch:
