@@ -1,9 +1,9 @@
 DONE
 ----
+* Print contents of a file specified on the command line, finding it in a configurable directory.
 
 IN PROGRESS
 -----------
-* Print contents of a file specified on the command line, finding it in a configurable directory.
 
 BACKLOG
 -------
