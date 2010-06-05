@@ -1,8 +1,5 @@
 package net.m14m.ardecha.application;
 
-import net.m14m.ardecha.input.*;
-import net.m14m.ardecha.output.PrintStreamOutput;
-
 import java.io.*;
 
 public class Rot13Application {
@@ -11,13 +8,8 @@ public class Rot13Application {
     private final Flushable streamToFlushWhenAppFinishes;
 
     public static void main(String... args) throws IOException {
-        InputRepository repository = FilesystemBackedInputRepository.create();
-        PrintStream systemOut = System.out;
-        PrintWriter writerWrappingSystemOut = new PrintWriter(systemOut);
-        PrintStreamOutput output = new PrintStreamOutput(systemOut);
-        ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
-        Rot13Translator translator = new Rot13Translator(repository, output);
-        new Rot13Application(translator, errorLogger, writerWrappingSystemOut).run(args[0]);
+        Rot13Application applicaton = new Rot13ApplicationFactory().create();
+        applicaton.run(args[0]);
     }
 
     public Rot13Application(Rot13Translator translator, ErrorLogger errorLogger,
