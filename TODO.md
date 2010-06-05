@@ -1,4 +1,7 @@
-* SystemOutput and ErrorLogger: feels like there's some redundancy and inconsistency there.
+* SystemOutput should take a PrintWriter in its constructor, like ErrorLogger does.
+* The Application should flush System.out when it finishes.
+* Then there's no need for the other things to flush at all.
+* Possibly the FakeOutput can be simplified some after this.
 
 A quick design sketch:
 ![The Application loads a file and an output source, and builds a Rot13Translator from them](http://www.diagrammr.com/png?key=dG6ESsAeogH)
