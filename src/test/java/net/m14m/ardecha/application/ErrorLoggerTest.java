@@ -6,14 +6,12 @@ import org.junit.*;
 import java.io.*;
 
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 @SuppressWarnings({"ThrowableInstanceNeverThrown"})
 public class ErrorLoggerTest {
     private static final String GENERIC_ERROR_MESSAGE = "An error occurred.";
-    private StringWriter outputWriter = spy(new StringWriter());
+    private StringWriter outputWriter = new StringWriter();
     private ErrorLogger errorLogger;
 
     @Before public void setUp() throws Exception {
