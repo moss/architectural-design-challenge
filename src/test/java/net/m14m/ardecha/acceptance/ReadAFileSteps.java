@@ -34,6 +34,6 @@ public class ReadAFileSteps extends Steps {
 
     @Then("it should print \"$output\"")
     public void checkOutput(String expectedOutput) throws UnsupportedEncodingException {
-        assertEquals(expectedOutput, outputStream.toString("utf-8"));
+        assertEquals(expectedOutput, outputStream.toString("utf-8").trim());
     }
 }
