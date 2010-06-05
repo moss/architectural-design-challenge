@@ -7,8 +7,16 @@ public class TranslatableCharacter {
         this.character = character;
     }
 
+    public TranslatableCharacter translate() {
+        return new TranslatableCharacter(character + 13);
+    }
+
     public int toInteger() {
         return character;
+    }
+
+    @Override public String toString() {
+        return new String(new int[] { character }, 0, 1);
     }
 
     @Override
