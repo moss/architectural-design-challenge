@@ -1,10 +1,10 @@
 DONE
 ----
 * Print contents of a file specified on the command line, finding it in a configurable directory.
+* Translate the file into ROT-13 while printing.
 
 IN PROGRESS
 -----------
-* Translate the file into ROT-13 while printing.
 
 BACKLOG
 -------
