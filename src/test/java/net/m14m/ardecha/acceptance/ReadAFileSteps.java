@@ -2,6 +2,7 @@ package net.m14m.ardecha.acceptance;
 
 import net.m14m.ardecha.application.*;
 import net.m14m.ardecha.input.FakeInputRepository;
+import net.m14m.ardecha.output.FakeOutputFileRepository;
 import org.jbehave.scenario.annotations.*;
 import org.jbehave.scenario.steps.Steps;
 
@@ -10,23 +11,26 @@ import java.io.*;
 import static org.junit.Assert.*;
 
 public class ReadAFileSteps extends Steps {
-    private FakeInputRepository repository;
+    private FakeInputRepository inputRepository;
     private ByteArrayOutputStream outputStream;
+    private FakeOutputFileRepository outputRepository;
 
     @BeforeScenario public void setUpFakeIOEnvironment() {
-        repository = new FakeInputRepository();
+        inputRepository = new FakeInputRepository();
+        outputRepository = new FakeOutputFileRepository();
         outputStream = new ByteArrayOutputStream();
     }
 
     @Given("a file \"$filename\" containing \"$content\"")
     public void createFile(String filename, String content) {
-        repository.createFile(filename, content);
+        inputRepository.createFile(filename, content);
     }
 
     @When("I execute \"rot13 $inputFile $outputFile\"")
     public void runApplication(String inputFile, String outputFile) throws IOException {
         Rot13Application application = new Rot13ApplicationFactory()
-                .withRepository(repository)
+                .withInputRepository(inputRepository)
+                .withOutputRepository(outputRepository)
                 .withOutputStream(new PrintStream(outputStream))
                 .create();
         application.run(inputFile, outputFile);
@@ -35,5 +39,10 @@ public class ReadAFileSteps extends Steps {
     @Then("it should print \"$output\"")
     public void checkOutput(String expectedOutput) throws UnsupportedEncodingException {
         assertEquals(expectedOutput, outputStream.toString("utf-8").trim());
+    }
+
+    @Then("there should be a file named $filename containing \"$expectedContent\"")
+    public void checkOutputFile(String filename, String expectedContent) {
+        outputRepository.shouldContainFile(filename, expectedContent);
     }
 }

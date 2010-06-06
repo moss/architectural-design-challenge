@@ -11,7 +11,7 @@ public class Rot13Application {
 
     public static void main(String... args) throws IOException {
         Rot13Application applicaton = new Rot13ApplicationFactory()
-                .withRepository(FilesystemBackedInputRepository.create())
+                .withInputRepository(FilesystemBackedInputRepository.create())
                 .withOutputStream(System.out)
                 .create();
         applicaton.run(args[0], args[1]);

@@ -1,16 +1,22 @@
 package net.m14m.ardecha.application;
 
 import net.m14m.ardecha.input.InputRepository;
-import net.m14m.ardecha.output.PrintStreamOutput;
+import net.m14m.ardecha.output.*;
 
 import java.io.*;
 
 public class Rot13ApplicationFactory {
-    private InputRepository repository;
+    private InputRepository inputRepository;
+    private OutputFileRepository outputRepository;
     private PrintStream outputStream;
 
-    public Rot13ApplicationFactory withRepository(InputRepository repository) {
-        this.repository = repository;
+    public Rot13ApplicationFactory withInputRepository(InputRepository repository) {
+        this.inputRepository = repository;
+        return this;
+    }
+
+    public Rot13ApplicationFactory withOutputRepository(OutputFileRepository outputRepository) {
+        this.outputRepository = outputRepository;
         return this;
     }
 
@@ -23,7 +29,7 @@ public class Rot13ApplicationFactory {
         PrintWriter writerWrappingSystemOut = new PrintWriter(outputStream);
         PrintStreamOutput output = new PrintStreamOutput(outputStream);
         ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
-        Rot13Translator translator = new Rot13Translator(repository, output);
+        Rot13Translator translator = new Rot13Translator(inputRepository, output);
         return new Rot13Application(translator, errorLogger, writerWrappingSystemOut);
     }
 }
