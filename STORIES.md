@@ -5,10 +5,10 @@ DONE
 
 IN PROGRESS
 -----------
+* Write output to a file, provided by a second command-line argument, in the configured directory.
 
 BACKLOG
 -------
-* Write output to a file, provided by a second command-line argument, in the configured directory.
 
 SOMEDAY/MAYBE
 -------------
