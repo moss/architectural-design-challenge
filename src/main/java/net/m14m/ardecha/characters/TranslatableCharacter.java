@@ -8,7 +8,7 @@ public class TranslatableCharacter {
     }
 
     public TranslatableCharacter translate() {
-        if (isPunctuation()) return this;
+        if (!isLetter()) return this;
         int translated = character + 13;
         if (inSecondHalfOfAlphabet()) translated -= 26;
         return new TranslatableCharacter(translated);
@@ -16,10 +16,6 @@ public class TranslatableCharacter {
 
     public int toInteger() {
         return character;
-    }
-
-    private boolean isPunctuation() {
-        return !isLetter();
     }
 
     private boolean isLetter() {
