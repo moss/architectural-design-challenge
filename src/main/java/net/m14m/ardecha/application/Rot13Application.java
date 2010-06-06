@@ -14,7 +14,7 @@ public class Rot13Application {
                 .withRepository(FilesystemBackedInputRepository.create())
                 .withOutputStream(System.out)
                 .create();
-        applicaton.run(args[0]);
+        applicaton.run(args[0], args[1]);
     }
 
     public Rot13Application(Rot13Translator translator, ErrorLogger errorLogger,
@@ -24,7 +24,7 @@ public class Rot13Application {
         this.streamToFlushWhenAppFinishes = streamToFlushWhenAppFinishes;
     }
 
-    public void run(String inputFilename) throws IOException {
+    public void run(String inputFilename, String outputFile) throws IOException {
         try {
             rot13Translator.translate(inputFilename);
         } catch (Exception e) {

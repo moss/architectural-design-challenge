@@ -21,24 +21,24 @@ public class Rot13ApplicationTest {
     }
 
     @Test public void shouldTranslateTheSpecifiedFile() throws IOException {
-        application.run("filename");
+        application.run("filename", "");
         verify(translator).translate("filename");
     }
 
     @Test public void shouldCatchAndLogExceptions() throws IOException {
         givenAnErrorInTheApplication(new FileNotFoundException());
-        application.run("");
+        application.run("", "");
         verify(errorLogger).log(isA(FileNotFoundException.class));
     }
 
     @Test public void shouldFlushSystemOutputWhenItFinishesRunning() throws IOException {
-        application.run("");
+        application.run("", "");
         verify(systemOutput).flush();
     }
 
     @Test public void shouldFlushOutputEvenIfThereIsAnError() throws IOException {
         givenAnErrorInTheApplication(new RuntimeException());
-        application.run("");
+        application.run("", "");
         verify(systemOutput).flush();
     }
 

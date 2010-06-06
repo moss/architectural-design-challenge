@@ -23,13 +23,13 @@ public class ReadAFileSteps extends Steps {
         repository.createFile(filename, content);
     }
 
-    @When("I execute \"rot13 $inputFile\"")
-    public void runApplication(String inputFile) throws IOException {
+    @When("I execute \"rot13 $inputFile $outputFile\"")
+    public void runApplication(String inputFile, String outputFile) throws IOException {
         Rot13Application application = new Rot13ApplicationFactory()
                 .withRepository(repository)
                 .withOutputStream(new PrintStream(outputStream))
                 .create();
-        application.run(inputFile);
+        application.run(inputFile, outputFile);
     }
 
     @Then("it should print \"$output\"")
