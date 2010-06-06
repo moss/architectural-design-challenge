@@ -10,5 +10,5 @@ Then it should print "Gur qbt onexf ng zvqavtug."
 And there should be a file named encrypted.txt containing "Gur qbt onexf ng zvqavtug." 
 
 Scenario: Show an error message when a file can't be found
-When I execute "rot13 nonexistent-file.txt"
+When I execute "rot13 nonexistent-file.txt output.txt"
 Then it should print "File not found: nonexistent-file.txt"
