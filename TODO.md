@@ -1,4 +1,3 @@
-* Build a FileOutput
 * Build a FileOutputRepository
 * Extract contract test for FileOutputRepository
 * Build out FakeFileOutputRepository
@@ -7,5 +6,7 @@
 * Actually hook things up to write to the output file
 * Finish wiring up the acceptance test, if it's not already done.
 * Handle flushing correctly
+  - Output files.
+  - Anything else?
 * Show friendly error if file already exists, rather than rewriting?
 * Review code quality
