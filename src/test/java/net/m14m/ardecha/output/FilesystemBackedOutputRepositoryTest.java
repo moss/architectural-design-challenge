@@ -1,6 +1,5 @@
 package net.m14m.ardecha.output;
 
-import net.m14m.ardecha.characters.TranslatableCharacter;
 import net.m14m.ardecha.input.StringableFile;
 import org.junit.*;
 
@@ -9,13 +8,11 @@ import java.io.*;
 import static net.m14m.ardecha.testing.TestingUtilities.failUnless;
 import static org.junit.Assert.*;
 
-public class FilesystemBackedOutputRepositoryTest {
-    private static final String OUTPUT_DIR = "output-dir-for-integration-tests";
-    private static final String OUTPUT_FILE = "output.txt";
-    private FilesystemBackedOutputRepository repository;
+public class FilesystemBackedOutputRepositoryTest extends OutputFileRepositoryContract {
+    private FilesystemBackedOutputRepository repository = new FilesystemBackedOutputRepository(OUTPUT_DIR);
 
-    @Before public void setUpRepository() throws Exception {
-        repository = new FilesystemBackedOutputRepository(OUTPUT_DIR);
+    @Override protected FilesystemBackedOutputRepository getRepository() {
+        return repository;
     }
 
     @Before public void setUpRepositoryDir() {
@@ -30,13 +27,8 @@ public class FilesystemBackedOutputRepositoryTest {
         failUnless(new File(OUTPUT_DIR).delete(), "Could not delete output dir");
     }
 
-    @Test public void shouldWriteOutputToAFileInTheFilesystem() throws IOException {
-        Output output = repository.create(OUTPUT_FILE);
-        output.writeChar(new TranslatableCharacter('a'));
-        output.writeChar(new TranslatableCharacter('b'));
-        output.writeChar(new TranslatableCharacter('c'));
-
-        String contents = new StringableFile(new File(OUTPUT_DIR, OUTPUT_FILE)).read();
-        assertEquals("abc", contents);
+    @Override protected void checkContents(String filename, String expectedContents) throws FileNotFoundException {
+        String contents = new StringableFile(new File(OUTPUT_DIR, filename)).read();
+        assertEquals(expectedContents, contents);
     }
 }
