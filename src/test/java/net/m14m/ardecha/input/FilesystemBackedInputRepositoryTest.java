@@ -5,7 +5,7 @@ import org.junit.*;
 import java.io.*;
 
 import static net.m14m.ardecha.input.InputAssertions.assertHasCharacters;
-import static org.junit.Assert.*;
+import static net.m14m.ardecha.testing.TestingUtilities.failUnless;
 
 public class FilesystemBackedInputRepositoryTest extends InputRepositoryContract {
     private static final String INPUT_DIRECTORY_NAME = "input-dir-for-integration-tests";
@@ -38,9 +38,5 @@ public class FilesystemBackedInputRepositoryTest extends InputRepositoryContract
 
     private File inputFile(String filename) {
         return new File(INPUT_DIRECTORY, filename);
-    }
-
-    private static void failUnless(boolean operationSucceeded, String message) {
-        if (!operationSucceeded) fail(message);
     }
 }

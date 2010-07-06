@@ -1,4 +1,3 @@
-* Build a FileOutputRepository
 * Extract contract test for FileOutputRepository
 * Build out FakeFileOutputRepository
 * Extract something that reads input, translates, and writes output
@@ -10,3 +9,6 @@
   - Anything else?
 * Show friendly error if file already exists, rather than rewriting?
 * Review code quality
+* Fail on create files that already exist.
+* Duplication in file path handling between Input and Output repositories.
+* Handle failure to create new file.
