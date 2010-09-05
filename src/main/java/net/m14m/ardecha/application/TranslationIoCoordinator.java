@@ -17,7 +17,8 @@ public class TranslationIoCoordinator {
         this.translator = translator;
     }
 
-    public void translate(String inputFilename) throws FileNotFoundException {
+    public void translate(String inputFilename, String outputFilename)
+            throws FileNotFoundException {
         translator.translate(repository.load(inputFilename), output);
     }
 }

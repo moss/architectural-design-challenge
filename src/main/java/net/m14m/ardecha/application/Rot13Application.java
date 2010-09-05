@@ -26,7 +26,7 @@ public class Rot13Application {
 
     public void run(String inputFilename, String outputFile) throws IOException {
         try {
-            ioCoordinator.translate(inputFilename);
+            ioCoordinator.translate(inputFilename, outputFile);
         } catch (Exception e) {
             errorLogger.log(e);
         }

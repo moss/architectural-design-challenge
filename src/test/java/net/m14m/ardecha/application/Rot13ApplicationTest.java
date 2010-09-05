@@ -20,9 +20,9 @@ public class Rot13ApplicationTest {
         application = new Rot13Application(ioCoordinator, errorLogger, systemOutput);
     }
 
-    @Test public void shouldTranslateTheSpecifiedFile() throws IOException {
-        application.run("filename", "");
-        verify(ioCoordinator).translate("filename");
+    @Test public void shouldTranslateTheSpecifiedFileToTheSpecifiedOutput() throws IOException {
+        application.run("input-filename", "output-filename");
+        verify(ioCoordinator).translate("input-filename", "output-filename");
     }
 
     @Test public void shouldCatchAndLogExceptions() throws IOException {
@@ -43,6 +43,6 @@ public class Rot13ApplicationTest {
     }
 
     private void givenAnErrorInTheApplication(Exception error) throws FileNotFoundException {
-        doThrow(error).when(ioCoordinator).translate(anyString());
+        doThrow(error).when(ioCoordinator).translate(anyString(), anyString());
     }
 }

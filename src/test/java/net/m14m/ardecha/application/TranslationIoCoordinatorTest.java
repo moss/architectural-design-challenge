@@ -23,7 +23,7 @@ public class TranslationIoCoordinatorTest {
     }
 
     @Test public void shouldPrintRot13edInputToOutput() throws IOException {
-        ioCoordinator.translate(FILENAME);
+        ioCoordinator.translate(FILENAME, "not tested yet");
         output.shouldHavePrinted(FILE_CONTENTS);
     }
 
