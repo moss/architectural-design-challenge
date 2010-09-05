@@ -13,4 +13,6 @@ BACKLOG
 SOMEDAY/MAYBE
 -------------
 * Allow input of arbitrarily large files.
-* Show a usage message when called with the wrong arguments. 
+* Show a usage message when called with the wrong arguments.
+* Upgrade to JBehave 3.
+* Integrate Groovy for easier scripting.
