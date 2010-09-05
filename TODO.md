@@ -1,5 +1,3 @@
-* Extract contract test for FileOutputRepository
-* Build out FakeFileOutputRepository
 * Extract something that reads input, translates, and writes output
 * Extract/build a CompositeOutput
 * Actually hook things up to write to the output file
