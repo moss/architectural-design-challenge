@@ -8,7 +8,7 @@ import java.io.*;
 public class Rot13ApplicationFactory {
     private InputRepository inputRepository;
     private OutputFileRepository outputRepository;
-    private PrintStream outputStream;
+    private PrintStream standardOutput;
 
     public Rot13ApplicationFactory withInputRepository(InputRepository repository) {
         this.inputRepository = repository;
@@ -20,17 +20,17 @@ public class Rot13ApplicationFactory {
         return this;
     }
 
-    public Rot13ApplicationFactory withOutputStream(PrintStream outputStream) {
-        this.outputStream = outputStream;
+    public Rot13ApplicationFactory withSystemOutputStream(PrintStream outputStream) {
+        this.standardOutput = outputStream;
         return this;
     }
 
     public Rot13Application create() {
-        PrintWriter writerWrappingSystemOut = new PrintWriter(outputStream);
-        PrintStreamOutput output = new PrintStreamOutput(outputStream);
+        PrintWriter writerWrappingSystemOut = new PrintWriter(standardOutput);
+        PrintStreamOutput output = new PrintStreamOutput(standardOutput);
         ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
         TranslationIoCoordinator ioCoordinator = new TranslationIoCoordinator(inputRepository,
-                output, new Rot13Translator());
+                outputRepository, output, new Rot13Translator());
         return new Rot13Application(ioCoordinator, errorLogger, writerWrappingSystemOut);
     }
 }

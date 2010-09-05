@@ -9,22 +9,26 @@ import java.io.IOException;
 
 public class TranslationIoCoordinatorTest {
     private static final String FILE_CONTENTS = "abc";
-    private static final String FILENAME = "sample.txt";
-    private FakeInputRepository repository = new FakeInputRepository();
-    private FakeOutput output = new FakeOutput();
+    private static final String INPUT_FILENAME = "sample.txt";
+    private static final String OUTPUT_FILENAME = "sample-translated.txt";
+    private FakeInputRepository inputRepository = new FakeInputRepository();
+    private FakeOutputFileRepository outputRepository = new FakeOutputFileRepository();
+    private FakeOutput standardOutput = new FakeOutput();
     private TranslationIoCoordinator ioCoordinator;
 
     @Before public void setUpIoCoordinator() {
-        ioCoordinator = new TranslationIoCoordinator(repository, output, new IdentityTranslator());
+        ioCoordinator = new TranslationIoCoordinator(inputRepository, outputRepository,
+                standardOutput, new IdentityTranslator());
     }
 
     @Before public void setUpFile() {
-        repository.createFile(FILENAME, FILE_CONTENTS);
+        inputRepository.createFile(INPUT_FILENAME, FILE_CONTENTS);
     }
 
     @Test public void shouldPrintRot13edInputToOutput() throws IOException {
-        ioCoordinator.translate(FILENAME, "not tested yet");
-        output.shouldHavePrinted(FILE_CONTENTS);
+        ioCoordinator.translate(INPUT_FILENAME, OUTPUT_FILENAME);
+        standardOutput.shouldHavePrinted(FILE_CONTENTS);
+        outputRepository.shouldContainFile(OUTPUT_FILENAME, FILE_CONTENTS);
     }
 
     private class IdentityTranslator implements Translator {

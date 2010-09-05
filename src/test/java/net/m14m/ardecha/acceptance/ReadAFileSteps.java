@@ -4,7 +4,6 @@ import net.m14m.ardecha.application.*;
 import net.m14m.ardecha.input.FakeInputRepository;
 import net.m14m.ardecha.output.FakeOutputFileRepository;
 import org.jbehave.scenario.annotations.*;
-import org.jbehave.scenario.errors.PendingError;
 import org.jbehave.scenario.steps.Steps;
 
 import java.io.*;
@@ -32,7 +31,7 @@ public class ReadAFileSteps extends Steps {
         Rot13Application application = new Rot13ApplicationFactory()
                 .withInputRepository(inputRepository)
                 .withOutputRepository(outputRepository)
-                .withOutputStream(new PrintStream(outputStream))
+                .withSystemOutputStream(new PrintStream(outputStream))
                 .create();
         application.run(inputFile, outputFile);
     }
@@ -44,7 +43,6 @@ public class ReadAFileSteps extends Steps {
 
     @Then("there should be a file named $filename containing \"$expectedContent\"")
     public void checkOutputFile(String filename, String expectedContent) {
-        throw new PendingError("not passing yet");
-//        outputRepository.shouldContainFile(filename, expectedContent);
+        outputRepository.shouldContainFile(filename, expectedContent);
     }
 }

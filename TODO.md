@@ -1,6 +1,5 @@
-* Actually hook things up to write to the output file
-* Extract/build a CompositeOutput
-* Finish wiring up the acceptance test, if it's not already done.
+* Check production wireup--make sure we create an output repository.
+* Consider extracting something for tying together the multiple outputs.
 * Handle flushing correctly
   - Output files.
   - Anything else?

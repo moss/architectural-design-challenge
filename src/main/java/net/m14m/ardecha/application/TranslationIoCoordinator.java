@@ -1,24 +1,30 @@
 package net.m14m.ardecha.application;
 
-import net.m14m.ardecha.input.InputRepository;
-import net.m14m.ardecha.output.Output;
+import net.m14m.ardecha.input.*;
+import net.m14m.ardecha.output.*;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class TranslationIoCoordinator {
-    private final InputRepository repository;
-    private final Output output;
+    private final InputRepository inputRepository;
+    private final OutputFileRepository outputRepository;
+    private final Output standardOutput;
     private final Translator translator;
 
-    public TranslationIoCoordinator(InputRepository repository, Output output,
+    public TranslationIoCoordinator(InputRepository inputRepository,
+                                    OutputFileRepository outputRepository, Output standardOutput,
                                     Translator translator) {
-        this.repository = repository;
-        this.output = output;
+        this.inputRepository = inputRepository;
+        this.outputRepository = outputRepository;
+        this.standardOutput = standardOutput;
         this.translator = translator;
     }
 
     public void translate(String inputFilename, String outputFilename)
-            throws FileNotFoundException {
-        translator.translate(repository.load(inputFilename), output);
+            throws IOException {
+        Input input = inputRepository.load(inputFilename);
+        Output fileOutput = outputRepository.create(outputFilename);
+        MultipleOutput output = new MultipleOutput(standardOutput, fileOutput);
+        translator.translate(input, output);
     }
 }

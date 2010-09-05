@@ -42,7 +42,7 @@ public class Rot13ApplicationTest {
         verify(systemOutput).flush();
     }
 
-    private void givenAnErrorInTheApplication(Exception error) throws FileNotFoundException {
+    private void givenAnErrorInTheApplication(Exception error) throws IOException {
         doThrow(error).when(ioCoordinator).translate(anyString(), anyString());
     }
 }
