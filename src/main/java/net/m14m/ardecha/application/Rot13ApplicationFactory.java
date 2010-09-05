@@ -29,7 +29,8 @@ public class Rot13ApplicationFactory {
         PrintWriter writerWrappingSystemOut = new PrintWriter(outputStream);
         PrintStreamOutput output = new PrintStreamOutput(outputStream);
         ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
-        Rot13Translator translator = new Rot13Translator(inputRepository, output);
-        return new Rot13Application(translator, errorLogger, writerWrappingSystemOut);
+        TranslationIoCoordinator ioCoordinator = new TranslationIoCoordinator(inputRepository,
+                output);
+        return new Rot13Application(ioCoordinator, errorLogger, writerWrappingSystemOut);
     }
 }

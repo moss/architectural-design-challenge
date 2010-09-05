@@ -1,4 +1,4 @@
-* Extract something that reads input, translates, and writes output
+* Split up tests for Rot13Translator and TranslationIoCoordinator
 * Extract/build a CompositeOutput
 * Actually hook things up to write to the output file
 * Finish wiring up the acceptance test, if it's not already done.

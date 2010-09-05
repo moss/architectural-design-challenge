@@ -12,17 +12,17 @@ import static org.mockito.Mockito.*;
 public class Rot13ApplicationTest {
     @Mock private ErrorLogger errorLogger;
     @Mock private Flushable systemOutput;
-    @Mock private Rot13Translator translator;
+    @Mock private TranslationIoCoordinator ioCoordinator;
     private Rot13Application application;
 
     @Before public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        application = new Rot13Application(translator, errorLogger, systemOutput);
+        application = new Rot13Application(ioCoordinator, errorLogger, systemOutput);
     }
 
     @Test public void shouldTranslateTheSpecifiedFile() throws IOException {
         application.run("filename", "");
-        verify(translator).translate("filename");
+        verify(ioCoordinator).translate("filename");
     }
 
     @Test public void shouldCatchAndLogExceptions() throws IOException {
@@ -43,6 +43,6 @@ public class Rot13ApplicationTest {
     }
 
     private void givenAnErrorInTheApplication(Exception error) throws FileNotFoundException {
-        doThrow(error).when(translator).translate(anyString());
+        doThrow(error).when(ioCoordinator).translate(anyString());
     }
 }

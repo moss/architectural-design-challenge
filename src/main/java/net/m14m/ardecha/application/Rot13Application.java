@@ -5,7 +5,7 @@ import net.m14m.ardecha.input.FilesystemBackedInputRepository;
 import java.io.*;
 
 public class Rot13Application {
-    private final Rot13Translator rot13Translator;
+    private final TranslationIoCoordinator ioCoordinator;
     private final ErrorLogger errorLogger;
     private final Flushable streamToFlushWhenAppFinishes;
 
@@ -17,16 +17,16 @@ public class Rot13Application {
         applicaton.run(args[0], args[1]);
     }
 
-    public Rot13Application(Rot13Translator translator, ErrorLogger errorLogger,
+    public Rot13Application(TranslationIoCoordinator ioCoordinator, ErrorLogger errorLogger,
                             Flushable streamToFlushWhenAppFinishes) {
-        this.rot13Translator = translator;
+        this.ioCoordinator = ioCoordinator;
         this.errorLogger = errorLogger;
         this.streamToFlushWhenAppFinishes = streamToFlushWhenAppFinishes;
     }
 
     public void run(String inputFilename, String outputFile) throws IOException {
         try {
-            rot13Translator.translate(inputFilename);
+            ioCoordinator.translate(inputFilename);
         } catch (Exception e) {
             errorLogger.log(e);
         }

@@ -6,7 +6,7 @@ import org.junit.*;
 
 import java.io.IOException;
 
-public class Rot13TranslatorTest {
+public class TranslationIoCoordinatorTest {
     private static final String FILENAME = "sample.txt";
     private FakeInputRepository repository = new FakeInputRepository();
     private FakeOutput output = new FakeOutput();
