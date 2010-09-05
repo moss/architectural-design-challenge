@@ -8,11 +8,13 @@ import java.io.FileNotFoundException;
 public class TranslationIoCoordinator {
     private final InputRepository repository;
     private final Output output;
-    private final Rot13Translator rot13Translator = new Rot13Translator();
+    private final Rot13Translator rot13Translator;
 
-    public TranslationIoCoordinator(InputRepository repository, Output output) {
+    public TranslationIoCoordinator(InputRepository repository, Output output,
+                                    Rot13Translator rot13Translator) {
         this.repository = repository;
         this.output = output;
+        this.rot13Translator = rot13Translator;
     }
 
     public void translate(String inputFilename) throws FileNotFoundException {

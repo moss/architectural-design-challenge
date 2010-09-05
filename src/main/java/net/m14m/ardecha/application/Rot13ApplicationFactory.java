@@ -30,7 +30,7 @@ public class Rot13ApplicationFactory {
         PrintStreamOutput output = new PrintStreamOutput(outputStream);
         ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
         TranslationIoCoordinator ioCoordinator = new TranslationIoCoordinator(inputRepository,
-                output);
+                output, new Rot13Translator());
         return new Rot13Application(ioCoordinator, errorLogger, writerWrappingSystemOut);
     }
 }
