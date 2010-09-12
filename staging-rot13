@@ -1,2 +1,2 @@
 #!/bin/bash
-java -DrepositoryPath=staging-input -jar target/architectural-design-challenge-1.0.jar $1 $2
+java -DrepositoryPath=staging-repository -jar target/architectural-design-challenge-1.0.jar $1 $2
