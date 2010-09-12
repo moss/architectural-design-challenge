@@ -13,14 +13,11 @@ public class TranslationIoCoordinatorTest {
     private static final String OUTPUT_FILENAME = "sample-translated.txt";
     private FakeInputRepository inputRepository = new FakeInputRepository();
     private FakeOutputFileRepository outputRepository = new FakeOutputFileRepository();
-    private FakeOutput standardOutput = new FakeOutput();
     private TranslationIoCoordinator ioCoordinator;
 
     @Before public void setUpIoCoordinator() {
-        ioCoordinator = new TranslationIoCoordinator(inputRepository,
-                new ConsoleAndFileOutputRepository(outputRepository, standardOutput),
-                new IdentityTranslator()
-        );
+        ioCoordinator = new TranslationIoCoordinator(inputRepository, outputRepository,
+                new IdentityTranslator());
     }
 
     @Before public void setUpFile() {
@@ -29,7 +26,6 @@ public class TranslationIoCoordinatorTest {
 
     @Test public void shouldPrintRot13edInputToOutput() throws IOException {
         ioCoordinator.translate(INPUT_FILENAME, OUTPUT_FILENAME);
-        standardOutput.shouldHavePrinted(FILE_CONTENTS);
         outputRepository.shouldContainFile(OUTPUT_FILENAME, FILE_CONTENTS);
     }
 
