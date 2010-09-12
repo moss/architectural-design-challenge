@@ -1,4 +1,3 @@
-* Consider extracting something for tying together the multiple outputs.
 * Handle flushing correctly
   - No visible bugs showing up. Less obvious ones to worry about?
   - Output files.
