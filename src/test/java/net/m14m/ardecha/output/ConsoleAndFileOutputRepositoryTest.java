@@ -1,7 +1,6 @@
-package net.m14m.ardecha.application;
+package net.m14m.ardecha.output;
 
 import net.m14m.ardecha.characters.TranslatableCharacter;
-import net.m14m.ardecha.output.*;
 import org.junit.*;
 
 import java.io.IOException;

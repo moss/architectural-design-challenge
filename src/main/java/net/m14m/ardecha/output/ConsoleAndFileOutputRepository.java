@@ -1,6 +1,4 @@
-package net.m14m.ardecha.application;
-
-import net.m14m.ardecha.output.*;
+package net.m14m.ardecha.output;
 
 import java.io.IOException;
 
