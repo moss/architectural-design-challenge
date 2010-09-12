@@ -1,6 +1,6 @@
 package net.m14m.ardecha.acceptance;
 
-import net.m14m.ardecha.application.*;
+import net.m14m.ardecha.application.Rot13ApplicationRunner;
 import net.m14m.ardecha.input.FakeInputRepository;
 import net.m14m.ardecha.output.FakeOutputFileRepository;
 import org.jbehave.scenario.annotations.*;
@@ -10,6 +10,7 @@ import java.io.*;
 
 import static org.junit.Assert.*;
 
+@SuppressWarnings({"FeatureEnvy"})
 public class ReadAFileSteps extends Steps {
     private FakeInputRepository inputRepository;
     private ByteArrayOutputStream outputStream;
@@ -28,12 +29,11 @@ public class ReadAFileSteps extends Steps {
 
     @When("I execute \"rot13 $inputFile $outputFile\"")
     public void runApplication(String inputFile, String outputFile) throws IOException {
-        Rot13Application application = new Rot13ApplicationFactory()
+        new Rot13ApplicationRunner()
                 .withInputRepository(inputRepository)
                 .withOutputRepository(outputRepository)
                 .withSystemOutputStream(new PrintStream(outputStream))
-                .create();
-        application.run(inputFile, outputFile);
+                .run(inputFile, outputFile);
     }
 
     @Then("it should print \"$output\"")
