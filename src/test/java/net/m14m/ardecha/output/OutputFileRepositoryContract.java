@@ -18,7 +18,14 @@ public abstract class OutputFileRepositoryContract {
         checkContents(OUTPUT_FILE, "abc");
     }
 
+    @Test(expected = Exception.class) public void
+    shouldNotRecreateFilesThatAlreadyExist() throws IOException {
+        getRepository().create(OUTPUT_FILE);
+        getRepository().create(OUTPUT_FILE);
+    }
+
     protected abstract OutputFileRepository getRepository();
 
-    protected abstract void checkContents(String filename, String expectedContents) throws FileNotFoundException;
+    protected abstract void checkContents(String filename, String expectedContents)
+            throws FileNotFoundException;
 }

@@ -11,7 +11,8 @@ public class FilesystemBackedOutputRepository implements OutputFileRepository {
 
     public Output create(String filename) throws IOException {
         File file = new File(repositoryPath, filename);
-        file.createNewFile();
+        boolean created = file.createNewFile();
+        if (!created) throw new IOException("File " + filename + " already exists.");
         FileOutputStream outputStream = new FileOutputStream(file);
         return new PrintStreamOutput(new PrintStream(outputStream));
     }
