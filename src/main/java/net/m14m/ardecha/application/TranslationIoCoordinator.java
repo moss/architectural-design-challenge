@@ -7,24 +7,20 @@ import java.io.IOException;
 
 public class TranslationIoCoordinator {
     private final InputRepository inputRepository;
-    private final OutputFileRepository outputRepository;
-    private final Output standardOutput;
     private final Translator translator;
+    private final OutputFileRepository outputRepository;
 
     public TranslationIoCoordinator(InputRepository inputRepository,
-                                    OutputFileRepository outputRepository, Output standardOutput,
+                                    OutputFileRepository outputRepository,
                                     Translator translator) {
         this.inputRepository = inputRepository;
         this.outputRepository = outputRepository;
-        this.standardOutput = standardOutput;
         this.translator = translator;
     }
 
-    public void translate(String inputFilename, String outputFilename)
-            throws IOException {
+    public void translate(String inputFilename, String outputFilename) throws IOException {
         Input input = inputRepository.load(inputFilename);
-        Output fileOutput = outputRepository.create(outputFilename);
-        MultipleOutput output = new MultipleOutput(standardOutput, fileOutput);
+        Output output = outputRepository.create(outputFilename);
         translator.translate(input, output);
     }
 }

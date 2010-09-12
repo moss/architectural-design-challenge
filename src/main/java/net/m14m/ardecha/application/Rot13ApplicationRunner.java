@@ -38,10 +38,12 @@ public class Rot13ApplicationRunner {
         PrintWriter writerWrappingSystemOut = new PrintWriter(standardOutput);
         PrintStreamOutput output = new PrintStreamOutput(standardOutput);
         ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
+        ConsoleAndFileOutputRepository consoleAndFileOutputRepository =
+                new ConsoleAndFileOutputRepository(outputRepository, output);
         TranslationIoCoordinator ioCoordinator = new TranslationIoCoordinator(inputRepository,
-                outputRepository, output, new Rot13Translator());
-        Rot13Application application = new Rot13Application(ioCoordinator, errorLogger,
-                writerWrappingSystemOut);
+                consoleAndFileOutputRepository, new Rot13Translator());
+        Rot13Application application =
+                new Rot13Application(ioCoordinator, errorLogger, writerWrappingSystemOut);
         application.run(args[0], args[1]);
     }
 }

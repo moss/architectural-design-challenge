@@ -17,8 +17,10 @@ public class TranslationIoCoordinatorTest {
     private TranslationIoCoordinator ioCoordinator;
 
     @Before public void setUpIoCoordinator() {
-        ioCoordinator = new TranslationIoCoordinator(inputRepository, outputRepository,
-                standardOutput, new IdentityTranslator());
+        ioCoordinator = new TranslationIoCoordinator(inputRepository,
+                new ConsoleAndFileOutputRepository(outputRepository, standardOutput),
+                new IdentityTranslator()
+        );
     }
 
     @Before public void setUpFile() {
