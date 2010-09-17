@@ -6,10 +6,10 @@ DONE
 
 IN PROGRESS
 -----------
+* Upgrade to JBehave 3.
 
 BACKLOG
 -------
-* Upgrade to JBehave 3.
 * Allow input of arbitrarily large files.
 
 SOMEDAY/MAYBE
