@@ -2,17 +2,17 @@ DONE
 ----
 * Print contents of a file specified on the command line, finding it in a configurable directory.
 * Translate the file into ROT-13 while printing.
+* Write output to a file, provided by a second command-line argument, in the configured directory.
 
 IN PROGRESS
 -----------
-* Write output to a file, provided by a second command-line argument, in the configured directory.
 
 BACKLOG
 -------
+* Upgrade to JBehave 3.
+* Allow input of arbitrarily large files.
 
 SOMEDAY/MAYBE
 -------------
-* Allow input of arbitrarily large files.
 * Show a usage message when called with the wrong arguments.
-* Upgrade to JBehave 3.
 * Integrate Groovy for easier scripting.
