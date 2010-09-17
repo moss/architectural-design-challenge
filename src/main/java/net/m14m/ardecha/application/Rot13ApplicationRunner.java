@@ -36,14 +36,16 @@ public class Rot13ApplicationRunner {
 
     public void run(String... args) throws IOException {
         PrintWriter writerWrappingSystemOut = new PrintWriter(standardOutput);
-        PrintStreamOutput output = new PrintStreamOutput(standardOutput);
         ErrorLogger errorLogger = new ErrorLogger(writerWrappingSystemOut);
-        ConsoleAndFileOutputRepository consoleAndFileOutputRepository =
+        new Rot13Application(createIoCoordinator(), errorLogger, writerWrappingSystemOut)
+                .run(args[0], args[1]);
+    }
+
+    private TranslationIoCoordinator createIoCoordinator() {
+        PrintStreamOutput output = new PrintStreamOutput(standardOutput);
+        OutputFileRepository multiOutputRepository =
                 new ConsoleAndFileOutputRepository(outputRepository, output);
-        TranslationIoCoordinator ioCoordinator = new TranslationIoCoordinator(inputRepository,
-                consoleAndFileOutputRepository, new Rot13Translator());
-        Rot13Application application =
-                new Rot13Application(ioCoordinator, errorLogger, writerWrappingSystemOut);
-        application.run(args[0], args[1]);
+        Rot13Translator translator = new Rot13Translator();
+        return new TranslationIoCoordinator(inputRepository, multiOutputRepository, translator);
     }
 }
