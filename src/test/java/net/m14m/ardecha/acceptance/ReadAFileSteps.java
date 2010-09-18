@@ -3,8 +3,8 @@ package net.m14m.ardecha.acceptance;
 import net.m14m.ardecha.application.Rot13ApplicationRunner;
 import net.m14m.ardecha.input.FakeInputRepository;
 import net.m14m.ardecha.output.FakeOutputFileRepository;
-import org.jbehave.scenario.annotations.*;
-import org.jbehave.scenario.steps.Steps;
+import org.jbehave.core.annotations.*;
+import org.jbehave.core.steps.Steps;
 
 import java.io.*;
 

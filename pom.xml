@@ -24,7 +24,7 @@
         <dependency>
             <groupId>org.jbehave</groupId>
             <artifactId>jbehave-core</artifactId>
-            <version>2.5.8</version>
+            <version>3.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -46,51 +46,24 @@
             <plugin>
                 <groupId>org.jbehave</groupId>
                 <artifactId>jbehave-maven-plugin</artifactId>
-                <version>2.5.8</version>
+                <version>3.0</version>
                 <configuration>
                     <classLoaderInjected>false</classLoaderInjected>
                     <scope>test</scope>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>run-scenarios-found</id>
+                        <id>run-stories-as-embeddables</id>
                         <phase>integration-test</phase>
                         <configuration>
-                            <scenarioIncludes>
-                                <scenarioInclude>**/acceptance/*Story.java</scenarioInclude>
-                            </scenarioIncludes>
-                            <skip>false</skip>
-                            <ignoreFailure>true</ignoreFailure>
-                            <batch>false</batch>
+                            <includes>
+                                <include>**/acceptance/*Story.java</include>
+                            </includes>
+                            <ignoreFailureInStories>true</ignoreFailureInStories>
+                            <ignoreFailureInView>false</ignoreFailureInView>
                         </configuration>
                         <goals>
-                            <goal>run-scenarios</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>render-reports</id>
-                        <phase>integration-test</phase>
-                        <configuration>
-                            <outputDirectory>${basedir}/target/jbehave-reports</outputDirectory>
-                            <formats>
-                                <format>txt</format>
-                                <format>html</format>
-                                <format>xml</format>
-                            </formats>
-                            <templateProperties>
-                                <property>
-                                    <name>defaultFormats</name>
-                                    <value>stats</value>
-                                </property>
-                                <property>
-                                    <name>renderedDirectory</name>
-                                    <value>rendered</value>
-                                </property>
-                            </templateProperties>
-                            <ignoreFailure>false</ignoreFailure>
-                        </configuration>
-                        <goals>
-                            <goal>render-reports</goal>
+                            <goal>run-stories-as-embeddables</goal>
                         </goals>
                     </execution>
                 </executions>
