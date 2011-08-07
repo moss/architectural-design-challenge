@@ -1,0 +1,23 @@
+What do I understand well, here?
+- Rot13ing is easiest to do one character at a time.
+- Output is easy to do with Java Writers, but they'll still need to be wrapped.
+
+What don't I understand well?
+- How to tie everything together.
+- Reading the contents of a file is a little bit tricky.
+
+What responsibilities do I see?
+- Reading a file off of the filesystem.
+- Translating plaintext to ROT13.
+- Printing output to the console.
+- Printing output to a file.
+- Knowing which file to read from (and eventually which one to write to).
+
+Architecture diagram:
+AppRunner queries FileRepository for File
+AppRunner prints File to Output
+Output is an interface, implemented by:
+- Something that writes to the console
+- Something that writes to the filesystem
+- A composite that writes to multiple outputs
+- A facade that translates to ROT13 before
