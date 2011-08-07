@@ -28,7 +28,7 @@ public class EndToEndTest {
     }
 
     private void thenTheScreenShouldDisplay(String expectedOutput) throws Exception {
-        assertEquals("output to screen", expectedOutput, fakeSystemOut.toString("UTF-8"));
+        assertEquals("output to screen", expectedOutput, fakeSystemOut.toString("ASCII"));
     }
 
     @Before public void replaceSystemOut() {
