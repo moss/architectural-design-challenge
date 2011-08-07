@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class SystemOutputIntegrationTest {
     private PrintStream realSystemOut;
     private ByteArrayOutputStream fakeSystemOut = new ByteArrayOutputStream();
-    private SystemOutput output;
+    private Output output = new SystemOutput();
 
     @Test public void shouldPassItsOutputOnToSystemOut() throws UnsupportedEncodingException {
         output.write('a');
@@ -22,7 +22,6 @@ public class SystemOutputIntegrationTest {
     @Before public void replaceSystemOut() {
         realSystemOut = System.out;
         System.setOut(new PrintStream(fakeSystemOut));
-        output = new SystemOutput();
     }
 
     @After public void restoreSystemOut() {
