@@ -8,6 +8,6 @@ import static org.junit.Assert.assertTrue;
 public class EnvironmentSetupTest {
     @Test public void iShouldBeAbleToRunATest() {
         assertTrue("this should pass", true);
-        assertFalse("but this should fail", true);
+        assertFalse("but this should fail", false);
     }
 }
