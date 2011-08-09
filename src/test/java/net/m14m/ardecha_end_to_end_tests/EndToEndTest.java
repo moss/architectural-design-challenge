@@ -19,6 +19,12 @@ public class EndToEndTest {
         thenTheScreenShouldDisplay("Gur qbt onexf ng zvqavtug.");
     }
 
+    @Test public void shouldWriteTheRot13dTextToAnotherFile() throws Exception {
+        givenAFile("in.txt", "The dog barks at midnight.");
+        whenIRunTheRot13CommandWith("in.txt", "out.txt");
+        thenAFileShouldBeCreated("out.txt", "Gur qbt onexf ng zvqavtug.");
+    }
+
     private void givenAFile(String name, String content) throws Exception {
         filesystem.givenAFile(name, content);
     }
@@ -29,6 +35,10 @@ public class EndToEndTest {
 
     private void thenTheScreenShouldDisplay(String expectedOutput) throws Exception {
         assertEquals("output to screen", expectedOutput, fakeSystemOut.toString("ASCII"));
+    }
+
+    private void thenAFileShouldBeCreated(String name, String expectedContent) throws Exception {
+        filesystem.thenAFileShouldBeCreated(name, expectedContent);
     }
 
     @Before public void replaceSystemOut() {

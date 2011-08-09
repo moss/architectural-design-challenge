@@ -10,7 +10,10 @@ public class Rot13Application {
         File ioDirectory = new File(System.getProperty("io-directory"));
         Rot13Application application = new Rot13Application(
                 new DirectoryBackedFileRepository(ioDirectory),
-                new Rot13Output(new SystemOutput()));
+                new Rot13Output(
+                        new MultiOutput(
+                                new SystemOutput(),
+                                new FileOutput(ioDirectory, args[1]))));
         application.rot13(args[0]);
     }
 
