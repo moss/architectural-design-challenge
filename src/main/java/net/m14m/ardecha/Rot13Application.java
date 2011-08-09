@@ -9,7 +9,11 @@ public class Rot13Application {
     public static void main(String[] args) {
         File ioDirectory = new File(System.getProperty("io-directory"));
         DirectoryBackedFileRepository fileRepository = new DirectoryBackedFileRepository(ioDirectory);
-        Rot13Application application = new Rot13Application(fileRepository, null);
+        Rot13Application application = new Rot13Application(fileRepository, new OutputRepository() {
+            public Output createOutput(String filename) {
+                return new SystemOutput();
+            }
+        });
         application.run(args[0], args[1]);
     }
 

@@ -2,10 +2,6 @@ What do I understand well, here?
 - Rot13ing is easiest to do one character at a time.
 - Output is easy to do with Java Writers, but they'll still need to be wrapped.
 
-What don't I understand well?
-- How to tie everything together.
-- Reading the contents of a file is a little bit tricky.
-
 What responsibilities do I see?
 - Reading a file off of the filesystem.
 - Translating plaintext to ROT13.
@@ -21,3 +17,8 @@ Output is an interface, implemented by:
 - Something that writes to the filesystem
 - A composite that writes to multiple outputs
 - A facade that translates to ROT13 before
+
+Assembling the output object is going to be a little weird, and I'm kind of leaning towards pushing
+all the assembly out into the main method. It doesn't seem very interesting, it doesn't seem very
+testable, it seems adequately covered by the end to end test, and it seems way less awful than
+anything I can do with that repository interface I declared.
