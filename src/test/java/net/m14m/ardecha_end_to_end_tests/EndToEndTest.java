@@ -1,15 +1,15 @@
 package net.m14m.ardecha_end_to_end_tests;
 
 import net.m14m.ardecha.Rot13Application;
+import net.m14m.ardecha.testing_support.FilesystemTestFixture;
 import org.junit.*;
 
 import java.io.*;
 
-import static org.apache.commons.io.FileUtils.*;
 import static org.junit.Assert.*;
 
 public class EndToEndTest {
-    private static final File TEST_IO_DIRECTORY = new File("test-io-directory");
+    private final FilesystemTestFixture filesystem = new FilesystemTestFixture();
     private PrintStream realSystemOut;
     private ByteArrayOutputStream fakeSystemOut = new ByteArrayOutputStream();
 
@@ -20,7 +20,7 @@ public class EndToEndTest {
     }
 
     private void givenAFile(String name, String content) throws Exception {
-        writeStringToFile(new File(TEST_IO_DIRECTORY, name), content);
+        filesystem.givenAFile(name, content);
     }
 
     private void whenIRunTheRot13CommandWith(String... args) {
@@ -41,11 +41,10 @@ public class EndToEndTest {
     }
 
     @Before public void setUpTestIoDirectory() throws IOException {
-        forceMkdir(TEST_IO_DIRECTORY);
-        System.setProperty("io-directory", TEST_IO_DIRECTORY.getName());
+        filesystem.setUpTestIoDirectory();
     }
 
     @After public void clearTestIoDirectory() throws IOException {
-        deleteDirectory(TEST_IO_DIRECTORY);
+        filesystem.clearTestIoDirectory();
     }
 }
