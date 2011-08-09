@@ -16,4 +16,8 @@ public class DirectoryBackedFileRepositoryIntegrationTest {
         file.writeTo(output);
         output.shouldEqual("abc");
     }
+
+    @Test(expected = InputException.class) public void shouldThrowASpecificExceptionOnFailure() {
+        repository.loadFile("nonexistent-file.txt");
+    }
 }

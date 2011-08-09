@@ -10,25 +10,27 @@ public class DirectoryBackedFileRepository implements FileRepository {
     }
 
     public TextFile loadFile(String filename) {
+        final int[] fileContents = readContents(new File(directory, filename));
+        return new TextFile() {
+            public void writeTo(Output output) {
+                for (int character : fileContents) {
+                    output.write(character);
+                }
+            }
+        };
+    }
+
+    private int[] readContents(File file) {
         try {
-            File file = new File(directory, filename);
             int length = (int) file.length();
-            final int[] fileContents = new int[length];
+            int[] fileContents = new int[length];
             FileInputStream inputStream = new FileInputStream(file);
             for (int i = 0; i < length; i++) {
                 fileContents[i] = inputStream.read();
             }
-            return new TextFile() {
-                public void writeTo(Output output) {
-                    for (int character : fileContents) {
-                        output.write(character);
-                    }
-                }
-            };
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            return fileContents;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new InputException();
         }
     }
 }
