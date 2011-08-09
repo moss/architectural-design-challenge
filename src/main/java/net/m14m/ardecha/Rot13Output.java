@@ -8,6 +8,12 @@ public class Rot13Output implements Output {
     }
 
     public void write(int character) {
-        output.write(character + 13);
+        output.write(rot13(character));
+    }
+
+    private int rot13(int character) {
+        if (character >= 'a' && character <= 'm') return character + 13;
+        if (character >= 'n' && character <= 'z') return character - 13;
+        return character;
     }
 }
