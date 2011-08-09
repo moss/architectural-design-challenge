@@ -8,8 +8,9 @@ public class Rot13Application {
 
     public static void main(String[] args) {
         File ioDirectory = new File(System.getProperty("io-directory"));
-        DirectoryBackedFileRepository fileRepository = new DirectoryBackedFileRepository(ioDirectory);
-        Rot13Application application = new Rot13Application(fileRepository, new SystemOutput());
+        Rot13Application application = new Rot13Application(
+                new DirectoryBackedFileRepository(ioDirectory),
+                new Rot13Output(new SystemOutput()));
         application.rot13(args[0]);
     }
 
