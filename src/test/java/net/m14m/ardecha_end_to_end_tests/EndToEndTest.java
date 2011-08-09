@@ -9,7 +9,7 @@ import java.io.*;
 import static org.junit.Assert.*;
 
 public class EndToEndTest {
-    private final FilesystemTestFixture filesystem = new FilesystemTestFixture();
+    @Rule public final FilesystemTestFixture filesystem = new FilesystemTestFixture();
     private PrintStream realSystemOut;
     private ByteArrayOutputStream fakeSystemOut = new ByteArrayOutputStream();
 
@@ -48,13 +48,5 @@ public class EndToEndTest {
 
     @After public void restoreSystemOut() {
         System.setOut(realSystemOut);
-    }
-
-    @Before public void setUpTestIoDirectory() throws IOException {
-        filesystem.setUpTestIoDirectory();
-    }
-
-    @After public void clearTestIoDirectory() throws IOException {
-        filesystem.clearTestIoDirectory();
     }
 }
