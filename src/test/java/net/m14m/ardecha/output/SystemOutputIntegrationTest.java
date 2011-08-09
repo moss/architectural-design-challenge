@@ -1,31 +1,18 @@
 package net.m14m.ardecha.output;
 
 import net.m14m.ardecha.Output;
+import net.m14m.ardecha.testing_support.SystemOutFixture;
 import org.junit.*;
 
-import java.io.*;
-
-import static org.junit.Assert.*;
-
 public class SystemOutputIntegrationTest {
-    private PrintStream realSystemOut;
-    private ByteArrayOutputStream fakeSystemOut = new ByteArrayOutputStream();
+    @Rule public SystemOutFixture systemOut = new SystemOutFixture();
     private Output output = new SystemOutput();
 
-    @Test public void shouldPassItsOutputOnToSystemOut() throws UnsupportedEncodingException {
+    @Test public void shouldPassItsOutputOnToSystemOut() throws Exception {
         output.write('a');
         output.write('b');
         output.write('c');
 
-        assertEquals("abc", fakeSystemOut.toString("ASCII"));
-    }
-
-    @Before public void replaceSystemOut() {
-        realSystemOut = System.out;
-        System.setOut(new PrintStream(fakeSystemOut));
-    }
-
-    @After public void restoreSystemOut() {
-        System.setOut(realSystemOut);
+        systemOut.thenTheScreenShouldDisplay("abc");
     }
 }

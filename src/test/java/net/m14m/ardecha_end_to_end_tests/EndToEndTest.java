@@ -1,17 +1,14 @@
 package net.m14m.ardecha_end_to_end_tests;
 
 import net.m14m.ardecha.runner.Rot13ApplicationRunner;
-import net.m14m.ardecha.testing_support.FilesystemTestFixture;
+import net.m14m.ardecha.testing_support.*;
 import org.junit.*;
 
-import java.io.*;
-
-import static org.junit.Assert.*;
+import java.io.IOException;
 
 public class EndToEndTest {
     @Rule public final FilesystemTestFixture filesystem = new FilesystemTestFixture();
-    private PrintStream realSystemOut;
-    private ByteArrayOutputStream fakeSystemOut = new ByteArrayOutputStream();
+    @Rule public final SystemOutFixture systemOut = new SystemOutFixture();
 
     @Test public void shouldPrintTheRot13dTextOfTheFile() throws Exception {
         givenAFile("in.txt", "The dog barks at midnight.");
@@ -34,19 +31,10 @@ public class EndToEndTest {
     }
 
     private void thenTheScreenShouldDisplay(String expectedOutput) throws Exception {
-        assertEquals("output to screen", expectedOutput, fakeSystemOut.toString("ASCII"));
+        systemOut.thenTheScreenShouldDisplay(expectedOutput);
     }
 
     private void thenAFileShouldBeCreated(String name, String expectedContent) throws Exception {
         filesystem.thenAFileShouldBeCreated(name, expectedContent);
-    }
-
-    @Before public void replaceSystemOut() {
-        realSystemOut = System.out;
-        System.setOut(new PrintStream(fakeSystemOut));
-    }
-
-    @After public void restoreSystemOut() {
-        System.setOut(realSystemOut);
     }
 }
