@@ -1,4 +1,6 @@
-package net.m14m.ardecha;
+package net.m14m.ardecha.input;
+
+import net.m14m.ardecha.*;
 
 import java.io.*;
 

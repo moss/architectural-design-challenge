@@ -1,5 +1,6 @@
-package net.m14m.ardecha;
+package net.m14m.ardecha.application;
 
+import net.m14m.ardecha.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.Mock;

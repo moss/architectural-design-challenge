@@ -1,11 +1,12 @@
-package net.m14m.ardecha;
+package net.m14m.ardecha.runner;
+
+import net.m14m.ardecha.application.Rot13Application;
+import net.m14m.ardecha.input.DirectoryBackedFileRepository;
+import net.m14m.ardecha.output.*;
 
 import java.io.*;
 
-public class Rot13Application {
-    private final FileRepository fileRepository;
-    private final Output output;
-
+public class Rot13ApplicationRunner {
     public static void main(String[] args) throws IOException {
         File ioDirectory = new File(System.getProperty("io-directory"));
         Rot13Application application = new Rot13Application(
@@ -15,15 +16,5 @@ public class Rot13Application {
                                 new SystemOutput(),
                                 FileOutput.open(ioDirectory, args[1]))));
         application.rot13(args[0]);
-    }
-
-    public Rot13Application(FileRepository fileRepository, Output output) {
-        this.fileRepository = fileRepository;
-        this.output = output;
-    }
-
-    public void rot13(String inputFilename) {
-        TextFile textFile = fileRepository.loadFile(inputFilename);
-        textFile.writeTo(output);
     }
 }

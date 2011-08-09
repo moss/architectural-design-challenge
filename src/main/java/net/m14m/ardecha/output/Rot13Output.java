@@ -1,4 +1,6 @@
-package net.m14m.ardecha;
+package net.m14m.ardecha.output;
+
+import net.m14m.ardecha.Output;
 
 public class Rot13Output implements Output {
     private final Output output;

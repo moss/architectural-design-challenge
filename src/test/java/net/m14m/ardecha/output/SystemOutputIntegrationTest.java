@@ -1,5 +1,6 @@
-package net.m14m.ardecha;
+package net.m14m.ardecha.output;
 
+import net.m14m.ardecha.Output;
 import org.junit.*;
 
 import java.io.*;

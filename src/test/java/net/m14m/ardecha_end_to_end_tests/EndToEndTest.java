@@ -1,6 +1,6 @@
 package net.m14m.ardecha_end_to_end_tests;
 
-import net.m14m.ardecha.Rot13Application;
+import net.m14m.ardecha.runner.Rot13ApplicationRunner;
 import net.m14m.ardecha.testing_support.FilesystemTestFixture;
 import org.junit.*;
 
@@ -30,7 +30,7 @@ public class EndToEndTest {
     }
 
     private void whenIRunTheRot13CommandWith(String... args) throws IOException {
-        Rot13Application.main(args);
+        Rot13ApplicationRunner.main(args);
     }
 
     private void thenTheScreenShouldDisplay(String expectedOutput) throws Exception {
