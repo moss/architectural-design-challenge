@@ -8,17 +8,21 @@ import static net.m14m.ardecha.testing_support.FilesystemTestFixture.TEST_IO_DIR
 
 public class DirectoryBackedFileRepositoryIntegrationTest {
     @Rule public final FilesystemTestFixture filesystem = new FilesystemTestFixture();
-    private TestableOutput output = new TestableOutput();
     private FileRepository repository = new DirectoryBackedFileRepository(TEST_IO_DIRECTORY);
 
     @Test public void shouldReadAFileFromTheSpecifiedDirectory() throws Exception {
         filesystem.givenAFile("some-file.txt", "abc");
         TextFile file = repository.loadFile("some-file.txt");
-        file.writeTo(output);
-        output.shouldEqual("abc");
+        fileShouldContain("abc", file);
     }
 
     @Test(expected = InputException.class) public void shouldThrowASpecificExceptionOnFailure() {
         repository.loadFile("nonexistent-file.txt");
+    }
+
+    private void fileShouldContain(String expectedContent, TextFile file) {
+        TestableOutput output = new TestableOutput();
+        file.writeTo(output);
+        output.shouldEqual(expectedContent);
     }
 }
