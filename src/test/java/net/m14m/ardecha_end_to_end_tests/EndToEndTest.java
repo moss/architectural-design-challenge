@@ -29,7 +29,7 @@ public class EndToEndTest {
         filesystem.givenAFile(name, content);
     }
 
-    private void whenIRunTheRot13CommandWith(String... args) {
+    private void whenIRunTheRot13CommandWith(String... args) throws IOException {
         Rot13Application.main(args);
     }
 

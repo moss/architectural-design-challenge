@@ -17,7 +17,7 @@ public class FilesystemTestFixture {
         assertEquals("content of file " + name, expectedContent, actualContent);
     }
 
-    private File file(String name) {
+    public File file(String name) {
         return new File(TEST_IO_DIRECTORY, name);
     }
 
