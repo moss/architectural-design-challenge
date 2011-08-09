@@ -24,6 +24,15 @@ public class Rot13OutputTest {
         wrappedOutput.shouldEqual("am");
     }
 
+    @Test public void shouldTranslateUppercaseLetters() {
+        output.write('A');
+        output.write('M');
+        output.write('N');
+        output.write('Z');
+
+        wrappedOutput.shouldEqual("NZAM");
+    }
+
     @Test public void punctuationShouldBeUnaffected() {
         output.write('`'); // 'a' - 1
         output.write('{'); // 'z' + 1

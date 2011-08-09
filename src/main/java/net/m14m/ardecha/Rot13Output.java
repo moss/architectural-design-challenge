@@ -12,8 +12,16 @@ public class Rot13Output implements Output {
     }
 
     private int rot13(int character) {
-        if (character >= 'a' && character <= 'm') return character + 13;
-        if (character >= 'n' && character <= 'z') return character - 13;
+        if (inFirstHalfOfAlphabet(character)) return character + 13;
+        if (inSecondHalfOfAlphabet(character)) return character - 13;
         return character;
+    }
+
+    private boolean inFirstHalfOfAlphabet(int character) {
+        return (character >= 'a' && character <= 'm') || (character >= 'A' && character <= 'M');
+    }
+
+    private boolean inSecondHalfOfAlphabet(int character) {
+        return (character >= 'n' && character <= 'z') || (character >= 'N' && character <= 'Z');
     }
 }
