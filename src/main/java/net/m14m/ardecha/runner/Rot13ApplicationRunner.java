@@ -7,7 +7,7 @@ import net.m14m.ardecha.output.*;
 import java.io.*;
 
 public class Rot13ApplicationRunner {
-    public static void main(String[] args) throws IOException {
+    public static void main(String... args) throws IOException {
         File ioDirectory = new File(System.getProperty("io-directory"));
         Rot13Application application = new Rot13Application(
                 new DirectoryBackedFileRepository(ioDirectory),
