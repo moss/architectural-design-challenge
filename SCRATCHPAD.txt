@@ -17,8 +17,3 @@ Output is an interface, implemented by:
 - Something that writes to the filesystem
 - A composite that writes to multiple outputs
 - A facade that translates to ROT13 before
-
-Assembling the output object is going to be a little weird, and I'm kind of leaning towards pushing
-all the assembly out into the main method. It doesn't seem very interesting, it doesn't seem very
-testable, it seems adequately covered by the end to end test, and it seems way less awful than
-anything I can do with that repository interface I declared.
