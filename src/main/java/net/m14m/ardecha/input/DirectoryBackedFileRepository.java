@@ -12,23 +12,34 @@ public class DirectoryBackedFileRepository implements FileRepository {
     }
 
     public TextFile loadFile(String filename) {
-        final int[] fileContents = readContents(new File(directory, filename));
-        return new TextFile() {
-            public void writeTo(Output output) {
-                for (int character : fileContents) output.write(character);
-            }
-        };
-    }
-
-    private int[] readContents(File file) {
         try {
+            File file = new File(directory, filename);
             int length = (int) file.length();
-            int[] fileContents = new int[length];
             FileInputStream inputStream = new FileInputStream(file);
-            for (int i = 0; i < length; i++) fileContents[i] = inputStream.read();
-            return fileContents;
+            return new StreamBackedTextFile(inputStream, length);
         } catch (IOException e) {
             throw new InputException();
+        }
+    }
+
+    private static class StreamBackedTextFile implements TextFile {
+        private final FileInputStream inputStream;
+        private final int length;
+
+        public StreamBackedTextFile(FileInputStream inputStream, int length) {
+            this.inputStream = inputStream;
+            this.length = length;
+        }
+
+        public void writeTo(Output output) {
+            try {
+                for (int i = 0; i < length; i++) {
+                    int character = inputStream.read();
+                    output.write(character);
+                }
+            } catch (IOException e) {
+                throw new InputException();
+            }
         }
     }
 }
