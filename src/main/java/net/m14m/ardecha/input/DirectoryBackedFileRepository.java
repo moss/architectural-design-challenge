@@ -14,9 +14,8 @@ public class DirectoryBackedFileRepository implements FileRepository {
     public TextFile loadFile(String filename) {
         try {
             File file = new File(directory, filename);
-            int length = (int) file.length();
             FileInputStream inputStream = new FileInputStream(file);
-            return new StreamBackedTextFile(inputStream, length);
+            return new StreamBackedTextFile(inputStream);
         } catch (IOException e) {
             throw new InputException();
         }
@@ -24,17 +23,15 @@ public class DirectoryBackedFileRepository implements FileRepository {
 
     private static class StreamBackedTextFile implements TextFile {
         private final FileInputStream inputStream;
-        private final int length;
 
-        public StreamBackedTextFile(FileInputStream inputStream, int length) {
+        public StreamBackedTextFile(FileInputStream inputStream) {
             this.inputStream = inputStream;
-            this.length = length;
         }
 
         public void writeTo(Output output) {
             try {
-                for (int i = 0; i < length; i++) {
-                    int character = inputStream.read();
+                int character;
+                while ((character = inputStream.read()) != -1) {
                     output.write(character);
                 }
             } catch (IOException e) {
