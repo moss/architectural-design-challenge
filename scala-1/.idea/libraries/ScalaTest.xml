@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="ScalaTest">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/scalatest-1.6.1/scalatest-1.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/lib/scalatest-1.6.1/doc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/scalatest-1.6.1/src/main/java" />
+      <root url="file://$PROJECT_DIR$/lib/scalatest-1.6.1/src/examples/java" />
+      <root url="file://$PROJECT_DIR$/lib/scalatest-1.6.1/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
